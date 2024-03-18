@@ -5,8 +5,7 @@ COPY package*.json ./
 COPY next.config.js ./
 RUN npm install
 COPY . .
-RUN  npm run build
-#
+RUN npm run build
 
 # Production Stage
 FROM node:20.9.0-alpine AS PRODUCTION_STAGE
