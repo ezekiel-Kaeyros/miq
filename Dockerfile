@@ -3,9 +3,9 @@ FROM node:20.9.0-alpine AS BUILD_IMAGE
 WORKDIR /app
 COPY package*.json ./
 COPY next.config.js ./
-RUN yarn
+RUN npm install
 COPY . .
-RUN  yarn build
+RUN  npm run build
 #
 
 # Production Stage
