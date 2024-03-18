@@ -1,0 +1,961 @@
+{
+  "navigation": {
+    "home": "Homepage",
+    "reportIncident": "Report",
+    "aboutQueer": {
+      "title": "Queerophobia",
+      "firstSubmenu": "What is Queerphobia ?",
+      "secondSubmenu": "I need help",
+      "thirdSubmenu": "Glossary"
+    },
+    "aboutUs": {
+      "title": "About us",
+      "referalCounseling": "Referral counseling",
+      "news": "News",
+      "publications": "Publications",
+      "team": "Team",
+      "partners": "Networks and Partners"
+    },
+    "faqs": "FAQs",
+    "button": "Report and incident"
+  },
+  "page": {
+    "datenschutz": {
+      "title": "Data protection",
+      "firstParagraph": "MIQ stands for 'Reporting and Information Center for Queerphobia' and is a project that aims to highlight queerphobia in North Rhine-Westphalia (NRW).",
+      "secondParagraph": "You can report a queerphobic incident on our website. We also serve as an information center and can guide you to additional counseling services in NRW."
+    },
+    "impressum": {
+      "title": "Legal notice",
+      "firstParagraph": "MIQ stands for 'Reporting and Information Center for Queerphobia' and is a project that aims to highlight queerphobia in North Rhine-Westphalia (NRW).",
+      "secondParagraph": "You can report a queerphobic incident on our website. We also serve as an information center and can guide you to additional counseling services in NRW."
+    },
+    "faqs": {
+      "group1": {
+        "title": "Questions about the Team/Cooperation: ",
+        "faqs": [
+          {
+            "id": 1,
+            "question": "Are your employees queer ?",
+            "answer": "Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text"
+          },
+          {
+            "id": 2,
+            "question": "What principles do you work by ?",
+            "answer": "Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text"
+          },
+          {
+            "id": 3,
+            "question": "Who do you work with ?",
+            "answer": "Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text"
+          }
+        ]
+      },
+      "group2": {
+        "title": "Questions about the Process: ",
+        "faqs": [
+          {
+            "id": 1,
+            "question": "What can I report ?",
+            "answer": "Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text"
+          },
+          {
+            "id": 2,
+            "question": "In which languages can I make a report ?",
+            "answer": "Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text"
+          },
+          {
+            "id": 3,
+            "question": "Can I remain anonymous ?",
+            "answer": "Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text"
+          },
+          {
+            "id": 4,
+            "question": "Where do I report multiple discrimination ?",
+            "answer": "Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text"
+          },
+          {
+            "id": 5,
+            "question": "What happens to my report ?",
+            "answer": "Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text"
+          },
+          {
+            "id": 6,
+            "question": "Can I also come in person ?",
+            "answer": "Text text text Text text text Text text text Text text t  ext Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text"
+          },
+          {
+            "id": 7,
+            "question": "I want to file a complaint. Where should I go ? What does queerphobia mean ?",
+            "answer": "Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text"
+          },
+          {
+            "id": 8,
+            "question": "What does queerphobia mean ?",
+            "answer": "Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text"
+          },
+          {
+            "id": 9,
+            "question": "How do you understand violence ?",
+            "answer": "Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text"
+          },
+          {
+            "id": 10,
+            "question": "What does discrimination mean ?",
+            "answer": "Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text"
+          },
+          {
+            "id": 11,
+            "question": "What does it achieve to report an incident ?",
+            "answer": "Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text"
+          },
+          {
+            "id": 12,
+            "question": "What are the benefits of providing information without identifying the perpetrators ?",
+            "answer": "Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text"
+          },
+          {
+            "id": 13,
+            "question": "Where can I report a queerphobic incident that didn't happen in NRW or online ?",
+            "answer": "Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text"
+          }
+        ]
+      },
+      "group3": {
+        "title": "Questions about the Project: ",
+        "faqs": [
+          {
+            "id": 1,
+            "question": "How is the reporting center funded ?",
+            "answer": "Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text"
+          },
+          {
+            "id": 2,
+            "question": "Do you work according to scientific standards ?",
+            "answer": "Text text text Text text text Text text text Text text text Text text text Text text text Text t  ext text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text"
+          },
+          {
+            "id": 3,
+            "question": "Where can I report a queerphobic incident that didn't happen in NRW or online ?",
+            "answer": "Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text"
+          }
+        ]
+      }
+    },
+    "home": {
+      "heroSection": {
+        "title": "We are MIQ and will be happy to help you!",
+        "description": {
+          "firstParagraph": "MIQ stands for 'Reporting and Information Center for Queer Hostility' and is a project that aims to highlight queer hostility in NRW.",
+          "secondParagraph": "You can report a queer-hostile incident on our website. We also serve as an information resource and guide you to further counseling services available in NRW."
+        },
+        "buttonText": "Report an Incident"
+      }
+    },
+    "melden": {
+      "stepper": {
+        "initialStep": {
+          "title": "Report an Incident",
+          "description": "Here, you can access the reporting form to report something queer-hostile."
+        },
+        "firstStep": {
+          "title": "Information about the Report",
+          "description": {
+            "firstParagraph": "Thank you for taking the time and energy to report a queer-hostile incident.",
+            "secondParagraph": "This form contains a total of 10 questions:",
+            "thirdParagraph": "The first section is about the incident itself, asking what happened and how to categorize the incident. The second section is about the affected person. With this information, you help us list queer-hostile attacks more accurately in our statistics.",
+            "fourthParagraph": "When you're finished, submit the form, and we will show you what counseling and information services are available.",
+            "disclaimer": "Disclaimer",
+            "datenschutz": "Privacy Policy",
+            "explanation": "Declaration"
+          },
+          "buttonText": "Let's start"
+        },
+        "secondStep": {
+          "title": "Who is affected ?*",
+          "mandatory": "* Mandatory field",
+          "options": [
+            {
+              "id": "age1",
+              "name": "identity",
+              "label": "Myself",
+              "value": "Myself",
+              "checked": false
+            },
+            {
+              "id": "identity2",
+              "name": "identity",
+              "label": "Another person",
+              "value": "Another person",
+              "checked": false
+            },
+            {
+              "id": "identity3",
+              "name": "identity",
+              "label": "I'm reporting on behalf of the affected person",
+              "value": "I'm reporting on behalf of the affected person",
+              "checked": false
+            },
+            {
+              "id": "identity4",
+              "name": "identity",
+              "label": "An organization/institution",
+              "value": "An organization/institution",
+              "checked": false
+            }
+          ],
+          "onBehalfHints": {
+            "title": "Hint",
+            "description": "If you are filling out the reporting form on behalf of another person, it means that you are completing the form from the perspective of the affected individual and according to their self-disclosures. If this is not the case, and you wish to report an incident from your perspective as a witness, please select the 'Another Person' option above."
+          }
+        },
+        "thirdStep": {
+          "title": "Incident Description*",
+          "mandatory": "* Mandatory field",
+          "description": "What exactly happened ?",
+          "placeholder": "Please describe the incident as precisely as possible.",
+          "disclaimer": "For data protection reasons we ask you not to enter names of other persons here.",
+          "minCharacters": "A minimum of 50 Characters is expected",
+          "hints": {
+            "title": "Possible Relevant Information",
+            "list": [
+              "Where did the discrimination occur?",
+              "How was the discrimination manifested?",
+              "Who was the perpetrator of the attack?",
+              "How did other individuals react?",
+              "What made the incident queerphobic?",
+              "What impact did the incident have on you (e.g., emotional, physical, social, or financial) ?"
+            ]
+          }
+        },
+        "thirdStepOrganization": {
+          "title": "What type of organization/institution is affected?",
+          "mandatory": "* Mandatory field",
+          "subTitle": "Multiple selections possible",
+          "minCharacters": "A minimum of 4 Characters is expected",
+          "data": [
+            {
+              "iD": 1,
+              "name": "organizationType",
+              "value": "Non-Governmental Organization (NGO)",
+              "id": "Nichtregierungsorganisation",
+              "label": "Non-Governmental Organization (NGO)"
+            },
+            {
+              "iD": 2,
+              "name": "organizationType",
+              "value": "Self-Organization",
+              "id": "Selbstorganisation",
+              "label": "Self-Organization"
+            },
+            {
+              "iD": 3,
+              "name": "organizationType",
+              "value": "Religious Institution",
+              "id": "Religiöse",
+              "label": "Religious Institution"
+            },
+            {
+              "iD": 4,
+              "name": "organizationType",
+              "value": "Social Institution",
+              "id": "Soziale",
+              "label": "Social Institution"
+            },
+            {
+              "iD": 5,
+              "name": "organizationType",
+              "value": "Cultural Institution",
+              "id": "Kulturelle",
+              "label": "Cultural Institution"
+            },
+            {
+              "iD": 6,
+              "name": "organizationType",
+              "value": "Association",
+              "id": "association",
+              "label": "Association"
+            },
+            {
+              "iD": 7,
+              "name": "organizationType",
+              "value": "Other, and namely:",
+              "id": "anderesOrg",
+              "label": "Other, and namely:"
+            }
+          ]
+        },
+        "fourthStep": {
+          "title": "When did the incident occur ?*",
+          "mandatory": "* Mandatory field",
+          "description": "Please select a date. If it occurred over an extended period, you can select that too.",
+          "happenedOverALongPeriod": "It happened over a long period of time."
+        },
+        "fourthStepOrganization": {
+          "title": "How many individuals are active in the organization/institution?",
+          "mandatory": "* Mandatory field",
+          "subTitle": "Main or volunteer, or as freelance contributors",
+          "data": [
+            {
+              "iD": 1,
+              "name": "numberOfEmployees",
+              "value": "Under 10",
+              "id": "gender",
+              "label": "Under 10"
+            },
+            {
+              "iD": 2,
+              "name": "numberOfEmployees",
+              "value": "10-49",
+              "id": "sexual",
+              "label": "10-49"
+            },
+            {
+              "iD": 3,
+              "name": "numberOfEmployees",
+              "value": "50-250",
+              "id": "romantic",
+              "label": "50-250"
+            },
+            {
+              "iD": 4,
+              "name": "numberOfEmployees",
+              "value": "Over 250",
+              "id": "genderExpression",
+              "label": "Over 250"
+            }
+          ]
+        },
+        "fifthStep": {
+          "title": "Where did the incident occur ?*",
+          "mandatory": "* Mandatory field",
+          "description": "",
+          "firstOption": {
+            "name": "online",
+            "id": "online",
+            "value": "It happened online",
+            "label": "It happened online"
+          },
+          "secondOption": {
+            "title": "City",
+            "name": "online",
+            "id": "place",
+            "value": "Online",
+            "label": "Where did the incident occur"
+          },
+          "thirdOption": {
+            "title": "City district",
+            "name": "stadtteil",
+            "value": "City district",
+            "minCharacters": "A minimum of 4 Characters is expected",
+            "id": "stadtteil"
+          }
+        },
+        "sixthStep": {
+          "title": "What did you believe the discrimination was based on ?",
+          "mandatory": "* Mandatory field",
+          "minCharacters": "A minimum of 4 Characters is expected",
+          "description": "Multiple selections possible",
+          "choices": [
+            {
+              "iD": 1,
+              "name": "typeOfDisc",
+              "value": "Gender Identity",
+              "id": "gender",
+              "label": "Gender Identity"
+            },
+            {
+              "iD": 2,
+              "name": "typeOfDisc",
+              "value": "Sexual Orientation",
+              "id": "sexual",
+              "label": "Sexual Orientation"
+            },
+            {
+              "iD": 3,
+              "name": "typeOfDisc",
+              "value": "Romantic Orientation",
+              "id": "romantic",
+              "label": "Romantic Orientation"
+            },
+            {
+              "iD": 4,
+              "name": "typeOfDisc",
+              "value": "Gender Expression",
+              "id": "genderExpression",
+              "label": "Gender Expression"
+            },
+            {
+              "iD": 5,
+              "name": "typeOfDisc",
+              "value": "Body",
+              "id": "body",
+              "label": "Body"
+            },
+            {
+              "iD": 6,
+              "name": "typeOfDisc",
+              "value": "Other, specify",
+              "id": "other",
+              "label": "Other, specify"
+            }
+          ]
+        },
+        "seventhStep": {
+          "title": "What form of queerphobia do you think this is  ?",
+          "mandatory": "* Mandatory field",
+          "description": "Multiple selections possible",
+          "minCharacters": "A minimum of 4 Characters is expected",
+          "choices": [
+            {
+              "iD": 1,
+              "name": "formOfDisc",
+              "value": "Lesbophobia",
+              "id": "lesbophobia",
+              "label": "Lesbophobia"
+            },
+            {
+              "iD": 2,
+              "name": "formOfDisc",
+              "value": "Homophobia",
+              "id": "homophobia",
+              "label": "Homophobia"
+            },
+            {
+              "iD": 3,
+              "name": "formOfDisc",
+              "value": "Bisexual discrimination",
+              "id": "bi",
+              "label": "Bisexual discrimination"
+            },
+            {
+              "iD": 4,
+              "name": "formOfDisc",
+              "value": "Transphobia",
+              "id": "trans",
+              "label": "Transphobia"
+            },
+            {
+              "iD": 5,
+              "name": "formOfDisc",
+              "value": "Intersex discrimination",
+              "id": "Inter*feindlichkeit",
+              "label": "Intersex discrimination"
+            },
+            {
+              "iD": 6,
+              "name": "formOfDisc",
+              "value": "Asexual discrimination",
+              "id": "asexual discrimination",
+              "label": "Asexual discrimination"
+            },
+            {
+              "iD": 7,
+              "name": "formOfDisc",
+              "value": "Non-binary discrimination",
+              "id": "non-binary discrimination",
+              "label": "Non-binary discrimination"
+            },
+            {
+              "iD": 8,
+              "name": "formOfDisc",
+              "value": "Agender discrimination",
+              "id": "agender discrimination",
+              "label": "Agender discrimination"
+            },
+            {
+              "iD": 8,
+              "name": "formOfDisc",
+              "value": "General queerphobia",
+              "id": "general queerphobia",
+              "label": "General queerphobia"
+            },
+            {
+              "iD": 9,
+              "name": "formOfDisc",
+              "value": "Other, specify",
+              "id": "other",
+              "label": "Other, specify"
+            }
+          ]
+        },
+        "eightStep": {
+          "title": "Is it another form of discrimination ?",
+          "mandatory": "* Mandatory field",
+          "minCharacters": "A minimum of 4 Characters is expected",
+          "data": {
+            "options": [
+              {
+                "id": "formOfDisc1",
+                "name": "formOfDisc",
+                "label": "No",
+                "value": "No",
+                "checked": false
+              },
+              {
+                "id": "formOfDisc",
+                "name": "formOfDisc",
+                "label": "Yes, specify:",
+                "value": "Yes, specify:",
+                "checked": false
+              }
+            ],
+            "optionsYes": [
+              {
+                "iD": 1,
+                "id": "Antiasiatischer",
+                "name": "formOfDiscYes",
+                "value": "Anti-Asian Racism",
+                "label": "Anti-Asian Racism"
+              },
+              {
+                "iD": 2,
+                "id": "Antifeminismus",
+                "name": "formOfDiscYes",
+                "value": "Antifeminism",
+                "label": "Antifeminism"
+              },
+              {
+                "iD": 3,
+                "name": "formOfDiscYes",
+                "id": "Antimuslimischer",
+                "value": "Anti-Muslim Racism",
+                "label": "Anti-Muslim Racism"
+              },
+              {
+                "iD": 4,
+                "name": "formOfDiscYes",
+                "id": "Anti-Schwarzer",
+                "value": "Anti-Black Racism",
+                "label": "Anti-Black Racism"
+              },
+              {
+                "iD": 5,
+                "name": "formOfDiscYes",
+                "id": "Antislawischer",
+                "value": "Anti-Slavic Racism",
+                "label": "Anti-Slavic Racism"
+              },
+              {
+                "iD": 6,
+                "name": "formOfDiscYes",
+                "value": "Antiziganism",
+                "id": "Antiziganismus",
+                "label": "Antiziganism"
+              },
+              {
+                "iD": 7,
+                "name": "formOfDiscYes",
+                "value": "Antisemitism",
+                "id": "Antisemitism",
+                "label": "Antisemitism"
+              },
+              {
+                "iD": 8,
+                "name": "formOfDiscYes",
+                "value": "Sexism",
+                "id": "Sexismus",
+                "label": "Sexism"
+              },
+              {
+                "iD": 9,
+                "name": "formOfDiscYes",
+                "value": "Queerphobia",
+                "id": "Queerphobia",
+                "label": "Queerphobia"
+              },
+
+              {
+                "iD": 10,
+                "name": "formOfDiscYes",
+                "id": "Anderes",
+                "value": "Other, specify:",
+                "label": "Other, specify:"
+              }
+            ]
+          }
+        },
+        "ninethStep": {
+          "title": "Have you already taken other measures ?",
+          "description": "Multiple selections possible.",
+          "minCharacters": "A minimum of 3 Characters is expected",
+          "mandatory": "* Mandatory field",
+          "data": {
+            "options": [
+              {
+                "id": "haveYouReported1",
+                "name": "haveYouReported",
+                "label": "No",
+                "value": "No",
+                "checked": false
+              },
+              {
+                "id": "haveYouReported",
+                "name": "haveYouReported",
+                "label": "Yes, specify:",
+                "value": "Yes, specify:",
+                "checked": false
+              }
+            ],
+            "optionsYes": [
+              {
+                "iD": 1,
+                "name": "haveYouReportedYes",
+                "value": "I reached out to family/friends",
+                "id": "hav1",
+                "label": "I reached out to family/friends"
+              },
+              {
+                "iD": 2,
+                "name": "haveYouReportedYes",
+                "value": "I reported the case to the police",
+                "id": "hav2",
+                "label": "I reported the case to the police"
+              },
+              {
+                "iD": 3,
+                "name": "haveYouReportedYes",
+                "value": "I reported the case to another reporting agency, specifically:",
+                "id": "hav3",
+                "label": "I reported the case to another reporting agency, specifically:"
+              },
+              {
+                "iD": 4,
+                "name": "haveYouReportedYes",
+                "value": "Other, specify:",
+                "id": "hav4",
+                "label": "Other, specify:"
+              }
+            ]
+          }
+        },
+
+        "tenthStep": {
+          "mainTitle": "Personal Information",
+          "minCharacters": "A minimum of 4 Characters is expected",
+          "mandatory": "* Mandatory field",
+          "firstBlock": {
+            "title": "What is your gender identity ?",
+            "titleOnBehalf": "What is the gender identity of the affected person ?",
+            "description": "Multiple selections possible",
+            "data": [
+              {
+                "id": "gender",
+                "name": "gender",
+                "label": "agender",
+                "value": "agender",
+                "checked": false
+              },
+              {
+                "id": "gender2",
+                "name": "gender",
+                "label": "intersex",
+                "value": "intersex",
+                "checked": false
+              },
+              {
+                "id": "gender3",
+                "name": "gender",
+                "label": "male",
+                "value": "male",
+                "checked": false
+              },
+              {
+                "id": "gender4",
+                "name": "gender",
+                "label": "non-binary",
+                "value": "non-binary",
+                "checked": false
+              },
+              {
+                "id": "gender5",
+                "name": "gender",
+                "label": "queer",
+                "value": "queer",
+                "checked": false
+              },
+              {
+                "id": "gender6",
+                "name": "gender",
+                "label": "trans*",
+                "value": "trans*",
+                "checked": false
+              },
+              {
+                "id": "gender7",
+                "name": "gender",
+                "label": "female",
+                "value": "female",
+                "checked": false
+              },
+              {
+                "id": "gender8",
+                "name": "gender",
+                "label": "Self-identification:",
+                "value": "Self-identification:",
+                "checked": false
+              }
+            ]
+          },
+          "secondBlock": {
+            "title": "What is your sexual and/or romantic orientation?",
+            "titleOnBehalf": "What is the sexual and/or romantic orientation of the affected person ?",
+            "description": "Multiple selections possible",
+            "data": [
+              {
+                "id": "sexualOrientation",
+                "name": "sexualOrientation",
+                "label": "lesbian",
+                "value": "lesbian",
+                "checked": false
+              },
+              {
+                "id": "sexualOrientation2",
+                "name": "sexualOrientation",
+                "label": "gay",
+                "value": "gay",
+                "checked": false
+              },
+              {
+                "id": "sexualOrientation3",
+                "name": "sexualOrientation",
+                "label": "bi+sexual",
+                "value": "bi+sexual",
+                "checked": false
+              },
+              {
+                "id": "sexualOrientation4",
+                "name": "sexualOrientation",
+                "label": "asexual",
+                "value": "asexual",
+                "checked": false
+              },
+              {
+                "id": "sexualOrientation5",
+                "name": "sexualOrientation",
+                "label": "queer",
+                "value": "queer",
+                "checked": false
+              },
+              {
+                "id": "sexualOrientation6",
+                "name": "sexualOrientation",
+                "label": "pansexual",
+                "value": "pansexual",
+                "checked": false
+              },
+              {
+                "id": "sexualOrientation7",
+                "name": "sexualOrientation",
+                "label": "heterosexual",
+                "value": "heterosexual",
+                "checked": false
+              },
+              {
+                "id": "sexualOrientation8",
+                "name": "sexualOrientation",
+                "label": "aromantic",
+                "value": "aromantic",
+                "checked": false
+              },
+              {
+                "id": "sexualOrientation9",
+                "name": "sexualOrientation",
+                "label": "bi+romantic",
+                "value": "bi+romantic",
+                "checked": false
+              },
+              {
+                "id": "sexualOrientation10",
+                "name": "sexualOrientation",
+                "label": "homoromantic",
+                "value": "homoromantic",
+                "checked": false
+              },
+              {
+                "id": "sexualOrientation11",
+                "name": "sexualOrientation",
+                "label": "panromantic",
+                "value": "panromantic",
+                "checked": false
+              },
+              {
+                "id": "sexualOrientation12",
+                "name": "sexualOrientation",
+                "label": "Self-identification:",
+                "value": "Self-identification:",
+                "checked": false
+              }
+            ]
+          },
+          "thirdBlock": {
+            "title": "How old are you?",
+            "titleOnBehalf": "How old is the affected person?",
+            "description": "Multiple choices possible",
+            "data": [
+              {
+                "id": "age1",
+                "name": "age",
+                "label": "under 18 years",
+                "value": "under 18 years",
+                "checked": false
+              },
+              {
+                "id": "age2",
+                "name": "age",
+                "label": "18 - 27 years",
+                "value": "18 - 27 years",
+                "checked": false
+              },
+              {
+                "id": "age3",
+                "name": "age",
+                "label": "28 - 40 years",
+                "value": "28 - 40 years",
+                "checked": false
+              },
+              {
+                "id": "age4",
+                "name": "age",
+                "label": "41 - 65 years",
+                "value": "41 - 65 years",
+                "checked": false
+              },
+              {
+                "id": "age5",
+                "name": "age",
+                "label": "Over 65 years",
+                "value": "Over 65 years",
+                "checked": false
+              }
+            ]
+          },
+          "fourthBlock": {
+            "title": "Consent",
+            "description": "Multiple choices possible",
+            "data": [
+              {
+                "id": "validate1",
+                "name": "validation",
+                "label": "I consent to sharing my information with the relevant reporting agencies in case of multiple discrimination, in an anonymized form (hyperlink to the list).",
+                "value": "Ich willige ein, dass meine Eingaben im Falle von Mehrfachdiskriminierung anonymisiert mit den zuständigen Meldestellen (Hyperlink zu Auflistung) geteilt werden.",
+                "checked": false
+              },
+              {
+                "id": "validation2",
+                "name": "validation",
+                "label": "I hereby confirm the accuracy of my information, acknowledge the data protection regulations (hyperlink to data protection concept), and consent to the described processing of my personal data.*",
+                "value": "Hiermit bestätige ich die Richtigkeit meiner Angaben, die Kenntnisnahme der Datenschutzbestimmungen (Hyperlink Datenschutzkonzept) und dass ich den darin beschriebenen Verarbeitungen meiner personenbezogenen Daten zustimme.*",
+                "checked": false
+              }
+            ]
+          }
+        },
+        "eleventhStep": {
+          "title": "Thank you for your report.",
+          "verification": "Are you okay with this data ?",
+          "description": "You can access our page with links to counseling here.",
+          "buttonText": "Referral Counseling",
+          "mandatory": "* Mandatory field",
+          "validation": {
+            "title": "Consent",
+            "description": "Multiple choices possible",
+            "data": [
+              {
+                "id": "validate1",
+                "name": "validation",
+                "label": "I consent to sharing my information with the relevant reporting agencies in case of multiple discrimination, in an anonymized form (hyperlink to the list).",
+                "value": "Ich willige ein, dass meine Eingaben im Falle von Mehrfachdiskriminierung anonymisiert mit den zuständigen Meldestellen (Hyperlink zu Auflistung) geteilt werden.",
+                "checked": false
+              },
+              {
+                "id": "validation2",
+                "name": "validation",
+                "label": "I hereby confirm the accuracy of my information, acknowledge the data protection regulations (hyperlink to data protection concept), and consent to the described processing of my personal data.*",
+                "value": "Hiermit bestätige ich die Richtigkeit meiner Angaben, die Kenntnisnahme der Datenschutzbestimmungen (Hyperlink Datenschutzkonzept) und dass ich den darin beschriebenen Verarbeitungen meiner personenbezogenen Daten zustimme.*",
+                "checked": false
+              }
+            ]
+          },
+          "captcha": "I'm not a robot"
+        },
+        "twelvethStep": {
+          "title": "Thank you for your report.",
+          "description": "You can access our page with links to counseling here.",
+          "button": "Reference Counseling"
+        }
+      },
+      "formFields": {},
+      "button": {
+        "start": "Let's start",
+        "next": "Next",
+        "prev": "Back",
+        "submit": "Submit",
+        "save": "Save"
+      }
+    },
+
+    "cookiesConsent": {
+      "title": "Your privacy",
+      "content": "For the operation of our portal, we exclusively use cookies that are necessary for operation. Further information can be found in the",
+      "datenschutz": "privacy policy.",
+      "accept": "Yes, understood"
+    },
+
+    "about": {
+      "title": "About Us",
+      "description": "This is the About page.",
+      "block1": {
+        "title1": "Here you will find all information about us lorem ipsum",
+        "p": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu."
+      },
+      "block2": {
+        "title": "Referral advice",
+        "p": "We are happy to help you ipsum dolor sit amet, adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla quis enim. "
+      },
+      "block3": {
+        "title": "Latest news",
+        "p": "We are happy to help you ipsum dolor sit amet, adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. "
+      }
+    },
+    "aboutQueer": {
+      "glossary": {
+        "title": "Glossary",
+        "glossary1": {
+          "title": "Theme 1 ",
+          "glossaryArray": [
+            {
+              "id": 1,
+              "question": "A-",
+              "answer": "Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text"
+            },
+            {
+              "id": 2,
+              "question": "B-",
+              "answer": "Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text"
+            },
+            {
+              "id": 3,
+              "question": "C-",
+              "answer": "Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text Text text text"
+            }
+          ]
+        }
+      }
+    },
+    "footer": {
+      "partners": "Cooperation Partners",
+      "datenschutz": "Privacy Policy",
+      "impressum": "Legal notice",
+      "contact": "Contact",
+      "spendenkonto": "Donation account",
+      "socials": "Social Media",
+      "block1": {
+        "title": "Queer Network NRW e.V"
+      },
+      "block2": {
+        "title": "Donation account"
+      }
+    }
+  }
+}

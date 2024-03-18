@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input:checked + div {
+  @apply border-primaryColor;
+}
+input:checked + div svg {
+  @apply block;
+}
+
+.MuiButtonBase-root
+  .MuiPickersDay-root
+  .Mui-selected
+  .MuiPickersDay-dayWithMargin
+  .css-qa7bje-MuiButtonBase-root-MuiPickersDay-root {
+  background-color: #463980 !important;
+  color: #463980 !important;
+}
+
+.css-qa7bje-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
+  background-color: #463980 !important;
+}
+
+.MuiButtonBase-root
+  .MuiPickersDay-root
+  .Mui-selected
+  .MuiPickersDay-dayWithMargin
+  .MuiPickersDay-today
+  .css-1jsy6pn-MuiButtonBase-root-MuiPickersDay-root {
+  color: white !important;
+  background-color: #463980 !important;
+}
+
+/* AntD datepicker */
+
+.ant-picker-focused {
+  border-color: #463980;
+}
+
+.ant-picker:hover:hover {
+  border-color: #463980 !important;
+}
+
+.ant-picker-cell-selected .ant-picker-cell-inner {
+  background-color: #463980 !important;
+}
+
+.ant-picker-cell-today .ant-picker-cell-inner::before {
+  border-color: #463980 !important;
+}
+
+/* Autocomplte search icon */
+
+.search-icon {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .ant-picker-panels {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}
