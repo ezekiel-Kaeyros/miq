@@ -16,6 +16,12 @@ jobs:
         run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       - name: Build the Docker image 
         run: docker build -t ezekielkaeyros/miq .
+
+      - name: Build anti dashbord miq
+        run: docker build -t ezekielkaeyros/dashbordmiq .
+
+      - name: Push to Dockerhub 
+        run: docker push ezekielkaeyros/dashbordmiq:latest
       - name: Push to Dockerhub 
         run: docker push ezekielkaeyros/miq:latest
     
