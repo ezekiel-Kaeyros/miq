@@ -18,12 +18,12 @@ jobs:
         run: docker build -t ezekielkaeyros/miq .
 
       - name: Build anti dashbord miq
-        run: docker build -t ezekielkaeyros/dashbordmiq .
+        
+        run: |
+          cd anti-Das && \  docker build -t ezekielkaeyros/dashbordmiq .
 
       - name: Push to Dockerhub 
-        run: |
-          cd anti-Das && \ 
-          docker push ezekielkaeyros/dashbordmiq:latest
+        run: docker push ezekielkaeyros/dashbordmiq:latest
       - name: Push to Dockerhub 
         run: docker push ezekielkaeyros/miq:latest
     
