@@ -1,20 +1,25 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
-export const useClickOutside = (handler: any) => {
-  let domNode = useRef<any>();
-
+/**
+ * This Hook can be used for detecting clicks outside the Opened Menu
+ */
+export const useClickOutside = (ref: any, onClickOutside: any) => {
   useEffect(() => {
-    let maybeHandler = (event: any) => {
-      if (!domNode || !domNode?.current?.contains(event?.target)) {
-        handler(event);
+    /**
+     * Invoke Function onClick outside of element
+     */
+    function handleClickOutside(event: { target: any }) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        onClickOutside();
       }
-    };
-    document.addEventListener('mousedown', maybeHandler);
-    document.addEventListener('touchstart', maybeHandler);
+    }
+    // Bind
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', maybeHandler);
-      document.removeEventListener('touchstart', maybeHandler);
+      // dispose
+      document.removeEventListener('mousedown', handleClickOutside);
+
+      ref.current = null;
     };
-  });
-  return domNode;
+  }, [ref, onClickOutside]);
 };

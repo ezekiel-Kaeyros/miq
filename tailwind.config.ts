@@ -15,16 +15,28 @@ const config: Config = {
       },
 
       colors: {
-        primaryColor: '#E30303',
-        secondaryColorSlate: '#EDEBF6',
-        menuAndFooterColor: '#EDEBF6',
-        dividerColor: '#463980',
-        textColor: '#1F1F1F',
+        primaryColor: '#005F6AFF',
+        'secondary': '#FAFAFB',
+        'green': '#005F6A',
+        'neutral': '#ACAFB7',
+        'neutral-gray': '#BDC1C9',
+        'neutral-yellow': '#F4C43B',
       },
       borderColor: {
-        primary: '#6E82FE',
-        secondary: '#EDEBF6',
+        'primary': '#005F6AFF',
+        'secondary': '#F4C43B'
       },
+      borderWidth: {
+        default: '1px',
+        '0': '0',
+        '2': '2px',
+        '3': '3px',
+        '4': '4px',
+        '6': '6px',
+      }, 
+      borderRadius: {
+        'cs': "10px",
+      }
     },
   },
   plugins: [],

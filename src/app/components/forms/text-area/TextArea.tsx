@@ -4,8 +4,7 @@ type TextAreaProps = {
   props: any;
   name: string;
   placeholder: string;
-  title?: string;
-  type: string;
+  title: string;
 };
 
 const TextArea: React.FC<TextAreaProps> = ({
@@ -24,10 +23,10 @@ const TextArea: React.FC<TextAreaProps> = ({
       </label>
       <textarea
         id={placeholder}
-        rows={6}
+        rows={8}
         name={name}
         {...props}
-        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-md border  focus:ring-blue-500 focus:border   focus:border-primaryColor  border-primaryColor"
+        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500  dark:border-gray-600"
         placeholder={placeholder}
       ></textarea>
     </>

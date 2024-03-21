@@ -1,12 +1,15 @@
 'use client';
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 
-import { motion } from 'framer-motion';
+import { ForwardRefComponent, HTMLMotionProps, motion } from 'framer-motion';
+interface AnimateClickProps extends HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+}
 
-const AnimateClick = ({ children }: { children: React.ReactNode }) => {
+const AnimateClick: React.FC<AnimateClickProps> = ({ children }) => {
   return (
     <motion.div
-      className="cursor-pointer w-fit relative"
+      className="cursor-pointer"
       whileHover={{ scale: 1 }}
       whileTap={{ scale: 0.98 }}
     >

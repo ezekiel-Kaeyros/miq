@@ -1,70 +1,119 @@
-import React from 'react';
-import { Button } from '../button/Button';
-import Image from 'next/image';
-import videoPlaceholder from '../../../../public/images/videoPlaceholder.png';
-import MeldungIcon from '../../../../public/icons/meldungIcon.svg';
-import Link from 'next/link';
+'use client';
 
-type heroSectionPropsValuesType = {
+import React from 'react';
+import HeroImage from '../../../../public/images/bgImage.png';
+import SecondHeroImage from '../../../../public/images/secondImage.jpg';
+import ThirdHeroImage from '../../../../public/images/thirdImage.jpg';
+import Image from 'next/image';
+import { Button } from '../button/Button';
+import Carousel from '../carousel/Carousel';
+import FAB from './fab/FAB';
+import FAB2 from './fab/FAB2';
+// import ResponsiveCarousel from '../ResponsiveCarousel/ResponsiveCarousel';
+import ResponsiveCarousel from '../ResponsiveCarousel/ResponsiveCarousel';
+
+type valuesHero = {
   title: string;
-  description: { firstParagraph: string; secondParagraph: string };
+  description: string;
   buttonText: string;
+  faqsButtonText: string;
+  Carousel: Array<{
+    id: number;
+    header: string;
+    paragraph: string;
+    button: string;
+    button2: string;
+  }>;
 };
 
-type heroSectionPropsType = {
-  content: heroSectionPropsValuesType;
+type HersoSectionProps = {
+  heroContent: valuesHero;
   lang: string;
 };
 
-const HeroSection: React.FC<heroSectionPropsType> = ({ lang, content }) => {
+const Slide = (
+  title: string,
+  description: string,
+  buttonText: string,
+  HeroImage: any,
+  faqsButtonText?: string
+) => {
   return (
     <>
-      <div className="px-6 lg:px-12 my-12    ">
-        {/* text-content */}
-        <div className="flex flex-col-reverse lg:flex-row lg:gap-x-10 justify-between w-full lg:items-center pb:8 lg:pb-0">
-          <div className=" lg:max-w-2xl">
-            <div className="pt-4">
-              <h1 className="font-bold text-2xl lg:text-4xl">
-                {content.title}
-              </h1>
-              <p className="w-fit mt-4 lg:mt-8 max-w-sm lg:max-w-xl">
-                {content?.description?.firstParagraph}
-              </p>
-              <p className="mt-2 pt-1 w-fit max-w-sm lg:max-w-xl">
-                {content?.description?.secondParagraph}
-              </p>
-            </div>
-
-            <div className="mt-8 w-full space-x-4 flex items-center">
-              <Link href={`/${lang}/report`}>
-                <Image className="w-24 " src={MeldungIcon} alt="Meldung icon" />
-              </Link>
-              <Button
-                href={`/${lang}/report`}
-                className=" w-full md:w-fit lg:w-[20rem] bg-primaryColor text-white font-bold text-lg"
-              >
-                {content.buttonText}
-              </Button>
-            </div>
-          </div>
-
-          <Image
-            className="w-full mb-8 xl:mb-0 xl:w-6/12 lg:h-[25rem] object-cover"
-            src={videoPlaceholder}
-            alt="video"
-          />
-
-          {/* <iframe
-            src="https://wwwcom/embed/9zWPJR2u01w?si=iUdQY2YiqrJGzSOX"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-            className="w-full lg:max-w-4xl lg:mr-0 h-[20rem]  lg:h-[25rem] mt-8"
-          ></iframe> */}
+      <Image
+        src={HeroImage}
+        className={` left-0 object-cover md:object-fill absolute  h-full md:w-full right-0 bottom-0 -z-20 md:absolute`}
+        alt="Hero Image"
+      />
+      <div className="flex justify-center absolute pt-[0rem] mt-[9%] sm:pt-[3rem] md:mt-12 md:mx-16 lg:ml-24 md:pt-0 md:absolute z-40 mx-4 lg:pt-0 xl:pt-0 2xl:pt-12 text-primaryColor flex-col w-[66%]">
+        <div
+          className="bg-white p-4 rounded-lg text-xl sm:text-3xl
+     2xl:text-5xl"
+        >
+          {title}
+        </div>
+        <div className="my-4 bg-white p-4 rounded-lg text-sm md:text-xl md:max-w-md xl:mt-8">
+          {description}
+        </div>
+        <div className="flex items-center space-x-4">
+          <Button
+            href={`/melden`}
+            className="ml-0 w-52 lg:mt-2 md:w-60 border-sky-600 text-md font-bold text-xl"
+            variant="primary"
+          >
+            {buttonText.toUpperCase()}
+          </Button>
+          {faqsButtonText && (
+            <Button
+              href={`/faq`}
+              className="ml-0 w-52 lg:mt-2 md:w-60 border-sky-600 text-md font-bold text-xl"
+              variant="primary"
+            >
+              {faqsButtonText}
+            </Button>
+          )}
         </div>
       </div>
     </>
+  );
+};
+
+const HeroSection: React.FC<HersoSectionProps> = ({ heroContent, lang }) => {
+  const first = Slide(
+    heroContent.title,
+    heroContent.description,
+    heroContent.buttonText,
+    HeroImage
+  );
+  const second = Slide(
+    heroContent.title,
+    heroContent.description,
+    heroContent.buttonText,
+    SecondHeroImage,
+    heroContent?.faqsButtonText
+  );
+  const third = Slide(
+    heroContent.title,
+    heroContent.description,
+    heroContent.buttonText,
+    ThirdHeroImage
+  );
+
+  const data = [first, second, third];
+
+  return (
+    // <div className="relative  w-full md:h-[70vh]  md:relative overflow-hidden h-[60vh] z-0 top-0 ">
+    <div className="w-full overflow-hidden">
+      <ResponsiveCarousel content={heroContent} lang={lang} />
+      {/* // <div> */}
+      {/* <Carousel content={data} /> */}
+      {/* <div className="absolute z-20 right-[2rem]  md:right-[1rem] sm:right-[2rem] top-5 md:top-[1rem] sm:top-[2rem]">
+        <FAB2 />
+      </div>
+      <div className="absolute z-20 right-[6rem]  md:right-[1rem] sm:right-[6rem] top-5 md:top-[5rem] sm:top-[2rem]">
+        <FAB />
+      </div> */}
+    </div>
   );
 };
 

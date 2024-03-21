@@ -7,7 +7,7 @@ import { Button } from '../button/Button';
 import Image from 'next/image';
 import LockIcon from '../../../../public/icons/lock-icon.svg';
 
-const USER_CONSENT_COOKIE_KEY = 'cookie_consent_is_true';
+const USER_CONSENT_COOKIE_KEY = 'cookie_consent_dina_is_true';
 const USER_CONSENT_COOKIE_EXPIRE_DATE = 365;
 
 const CookieConsent: React.FC<CookieConsentProps> = ({
@@ -37,7 +37,7 @@ const CookieConsent: React.FC<CookieConsentProps> = ({
   }
 
   return (
-    <section className="fixed bg-white border  bottom-0 left-0 w-full py-4 md:py-4">
+    <section className="fixed z-20 bg-gray-100 border  bottom-0 left-0 w-full py-4 md:py-4">
       <div className="flex px-5 items-center">
         <h1 className=" font-bold md:text-xl ">
           {cookieConsentTranslation?.title}
@@ -63,7 +63,7 @@ const CookieConsent: React.FC<CookieConsentProps> = ({
         <div className="flex items-center">
           <Button
             variant="primary"
-            className="text-sm mt-0 font-bold text-white uppercase  whitespace-nowrap"
+            className="text-sm lg:mt-0 font-bold text-white uppercase  whitespace-nowrap"
             onClick={onClick}
           >
             {cookieConsentTranslation?.accept}

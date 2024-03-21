@@ -2,56 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-input:checked + div {
-  @apply border-primaryColor;
-}
-input:checked + div svg {
-  @apply block;
-}
-
-.MuiButtonBase-root
-  .MuiPickersDay-root
-  .Mui-selected
-  .MuiPickersDay-dayWithMargin
-  .css-qa7bje-MuiButtonBase-root-MuiPickersDay-root {
-  background-color: #463980 !important;
-  color: #463980 !important;
-}
-
-.css-qa7bje-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
-  background-color: #463980 !important;
-}
-
-.MuiButtonBase-root
-  .MuiPickersDay-root
-  .Mui-selected
-  .MuiPickersDay-dayWithMargin
-  .MuiPickersDay-today
-  .css-1jsy6pn-MuiButtonBase-root-MuiPickersDay-root {
-  color: white !important;
-  background-color: #463980 !important;
-}
-
-/* AntD datepicker */
-
-.ant-picker-focused {
-  border-color: #463980;
-}
-
-.ant-picker:hover:hover {
-  border-color: #463980 !important;
-}
-
-.ant-picker-cell-selected .ant-picker-cell-inner {
-  background-color: #463980 !important;
-}
-
-.ant-picker-cell-today .ant-picker-cell-inner::before {
-  border-color: #463980 !important;
-}
-
-/* Autocomplte search icon */
-
 .search-icon {
   display: none;
 }
@@ -62,4 +12,47 @@ input:checked + div svg {
     flex-direction: column;
     width: 100%;
   }
+}
+
+.alice-carousel__dots-item.__active {
+  background: #782bc6 !important;
+}
+
+.alice-carousel__dots-item {
+  background: #9134ee57 !important;
+}
+
+element.style {
+  display: flex;
+}
+
+ul .custom-dots {
+  display: flex;
+}
+
+.custom-dots {
+  display: flex !important;
+  position: absolute;
+  top: 80%; /* Adjust the top position as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.custom-dot {
+  background-color: #005f6a;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  margin: 10px 5px;
+  border: 1px solid black;
+  cursor: pointer;
+  display: flex;
+}
+
+.custom-dots li.slick-active .custom-dot {
+  background-color: white; /* Set the active state color */
+  width: 22px;
+  height: 22px;
+  border: 5px solid #005f6a;
 }

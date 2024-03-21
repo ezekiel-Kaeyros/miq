@@ -5,7 +5,7 @@ type InputFieldProps = {
   name: string;
   placeholder?: string;
   title?: string;
-  change?:any
+  error?: boolean;
 };
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -13,46 +13,27 @@ const InputField: React.FC<InputFieldProps> = ({
   title,
   name,
   placeholder,
-  change
+  error,
 }) => {
   return (
     <>
-      {change ? (
-        <>
-          {' '}
-          <label className="block mb-4 mt-6 text-sm" htmlFor={name}>
-            {title}
-          </label>
-          <input
-            className="appearance-none border rounded-md w-full py-3 px-3 leading-tight border-gray-300  focus:outline-none focus:border-primaryColor focus:bg-white text-gray-700 pr-16"
-            id={name}
-            type="text"
-            placeholder={placeholder}
-            autoComplete="off"
-            // autoFocus
-            name={name}
-            {...props}
-            onChange={change}
-          />
-        </>
-      ) : (
-        <>
-          {' '}
-          <label className="block mb-4 mt-6 text-sm" htmlFor={name}>
-            {title}
-          </label>
-          <input
-            className="appearance-none border rounded-md w-full py-3 px-3 leading-tight border-gray-300  focus:outline-none focus:border-primaryColor focus:bg-white text-gray-700 pr-16"
-            id={name}
-            type="text"
-            placeholder={placeholder}
-            autoComplete="off"
-            // autoFocus
-            name={name}
-            {...props}
-          />
-        </>
-      )}
+      <label className="font-bold block mb-3 text-black" htmlFor={name}>
+        {title}
+      </label>
+      <input
+        className={`appearance-none border rounded-md w-full py-3 px-3 leading-tight  ${
+          error
+            ? 'border-red-600 focus:border-red-600'
+            : 'border-gray-300 focus:border-gray-200'
+        }  focus:outline-none focus:border-primaryColor focus:bg-white text-gray-700 pr-16`}
+        id={name}
+        type="text"
+        placeholder={placeholder}
+        autoComplete="off"
+        autoFocus
+        name={name}
+        {...props}
+      />
     </>
   );
 };

@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import { VariantProps, cva } from 'class-variance-authority';
 import React, { ButtonHTMLAttributes, FC } from 'react';
 import Link from 'next/link';
@@ -15,17 +16,17 @@ interface ButtonProps
 }
 
 const buttonVariants = cva(
-  'w-full py-3 text-white font-medium  flex justify-center px-4 rounded focus:outline-none focus:shadow-outline',
+  'py-3.5 px-8 w-52 uppercase text-white font-medium  flex justify-center rounded-lg focus:outline-none focus:shadow-outline',
 
   {
     variants: {
       variant: {
-        default: 'bg-primaryColor w-full text-white hover:opacity-90',
-        primary: 'bg-primaryColor hover:opacity-90',
-        disabled: 'bg-primaryColor opacity-50',
-        danger: 'bg-red-500 w-full text-white hover:bg-red-600',
+        default: 'bg-black w-full text-white hover:bg-slate-800 mx-auto',
+        primary: 'bg-primaryColor w-full hover:opacity-90 mx-auto',
+        danger: 'bg-red-500 w-full text-white hover:bg-red-600 mx-auto',
         outline:
-          'w-full text-white border border-slate-300 hover:bg-primaryColor hover:text-white hover:border-primaryColor',
+          'w-full mx-auto text-white border border-slate-300 hover:bg-primaryColor hover:text-white hover:border-primaryColor',
+        disabled: 'bg-primaryColor opacity-30 w-full text-white mx-auto',
       },
     },
 
@@ -45,9 +46,7 @@ const Button: FC<ButtonProps> = ({
 }) => {
   if (href) {
     return (
-      // <AnimateClick>
-      <>
-        {' '}
+      <AnimateClick>
         {icon ? (
           <Link
             href={href}
@@ -66,13 +65,11 @@ const Button: FC<ButtonProps> = ({
             {children}
           </Link>
         )}
-      </>
-
-      //  </AnimateClick>
+      </AnimateClick>
     );
   }
   return (
-    // <AnimateClick>
+    <AnimateClick>
       <button {...props} className={cn(buttonVariants({ variant, className }))}>
         <div className="flex items-center">
           <span className="mr-2">
@@ -81,8 +78,7 @@ const Button: FC<ButtonProps> = ({
           {children}
         </div>
       </button>
-    //</AnimateClick> 
-  
+    </AnimateClick>
   );
 };
 

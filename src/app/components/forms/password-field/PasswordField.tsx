@@ -16,7 +16,7 @@ const PasswordField: React.FC<PasswordFieldProps> = ({ props }) => {
         Password
       </label>
       <input
-        className="appearance-none border-2 rounded w-full py-3 px-3 leading-tight border-gray-300 bg-gray-100 focus:outline-none focus:border-indigo-700 focus:bg-white text-gray-700 pr-16 font-mono js-password"
+        className="appearance-none border-2 rounded w-full py-3 px-3 leading-tight border-gray-300 bg-gray-100 focus:outline-none focus:border-primary focus:bg-white text-gray-700 pr-16 font-mono js-password"
         id="password"
         type={isVisible ? `text` : 'password'}
         autoComplete="off"
