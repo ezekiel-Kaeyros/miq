@@ -1,68 +1,73 @@
-import Link from 'next/link';
 import React from 'react';
 import CopyRightSection from './CopyRightSection';
+import FacebookIcon from '../../../../public/images/Vector (1).svg';
+import InstagramIcon from '../../../../public/images/Vector.svg';
+import ligne from '../../../../public/images/Frame 1.png';
 import Image from 'next/image';
-import Logo from '../../../../public/logo-2.png';
-import PlanLogo from '../../../../public/planLogo.svg';
-import FacebookIcon from '../../../../public/Social Icons.png';
-import LinkedIcon from '../../../../public/LinkedIn Icon.png';
-import InstagramIcon from '../../../../public/Insta Icon.png';
-import MinisteriumLogo from '../../../../public/images/ministerium.png';
+import Link from 'next/link';
 
 type FooterValues = {
-  datenschutz: any;
-  link:string;
+  partners: string;
+  datenschutz: string;
+  impressum: string;
+  contact: string;
+  spendenkonto: string;
+  socials: string;
+  block1: {
+    title: string;
+  };
+  block2: {
+    title: string;
+  };
 };
 
 type FooterProps = {
   footer: FooterValues;
+  lang: string;
 };
 
-const Footer: React.FC<FooterProps> = ({ footer }) => {
+const Footer: React.FC<FooterProps> = ({ footer, lang }) => {
   return (
-    <div className="mx-auto flex border-t-2  z-10  lg:border-top-0 lg:border-none  lg:relative w-full px-2 md:px-16 xl:px-24 bottom-0 flex-col lg:text-gray-800">
-      <div>
-        <div className="flex w-full  py-8  lg:flex lg:mt-0 flex-row-reverse lg:flex-row justify-between">
-          <Link href={'/'} className="w-fit hidden lg:block">
-            <Image src={Logo} alt="Logo" width="150" />
-            <Image src={PlanLogo} alt="Logo" width="150" className='mb-[-13%] mt-[16%]' />
-          </Link>
-
-          <Link href={'/'} className="w-fit block h-fit lg:hidden">
-            <Image className="w-32" src={Logo} alt="Logo" />
-          </Link>
-          <div className="w-full lg:w-fit  text-black mb-2">
-            <h1 className="lg:hidden uppercase border-secondary border-b-[0.8px] mb-2 w-fit">
-              Folge uns
-            </h1>
-            <div className="flex lg:hidden justify-between w-fit space-x-4 mb-4">
-              <Link href={'https://www.facebook.com/'} target='_blank'><Image src={FacebookIcon} className="w-8" alt="Facebook Icon" /></Link>
-              <Link href={'https://www.instagram.com/'} target='_blank'><Image src={InstagramIcon} className="w-8" alt="Youtube Icon" /></Link>
-              <Link href={'https://www.linkedin.com/'} target='_blank'><Image src={LinkedIcon} className="w-8" alt="LinkedIn Icon" /></Link>
-            </div>
-
-            <div className="hidden lg:block w-fit">
-              <Link href={'/'}>
-                <Image
-                  className="w-72 lg:w-96"
-                  src={MinisteriumLogo}
-                  alt="Ministerium Logo" />
-              </Link>
-            </div>
-          </div>
+    <>
+      <Image src={ligne} alt="" className="w-full h-3" />
+      <div className="w-full bg-[#463880] md:flex block md:px-4 px-2 lg:px-16 py-14 md:justify-between text-white	">
+        <div className="	 md:mb-0 mb-12">
+          <p className="font-bold text-lg">{footer.block1.title}</p>
+          <ul className="font-bold">
+            <li>LindenstaBe 20,50674 köln</li>
+            <li>+49 (0)221-3565650</li>
+            <li>info@aueeres-netzwerk.nrw</li>
+          </ul>
         </div>
-        <div className="px-auto lg:justify-start  lg:px-0 pb-4 sm:block lg:hidden flex justify-center w-full ">
-          <Link href={'/'}>
-            <Image
-              className="w-72 md:w-96 lg:w-full"
-              src={MinisteriumLogo}
-              alt="Ministerium Logo" />
+        <div className=" md:mb-0 mb-12">
+          <p className="font-bold text-lg ">{footer.block2.title}</p>
+          <ul className="font-bold">
+            <li>IBAN: DE89 3702 0500 0007 0255 01</li>
+            <li>BIC: BFSWDE33XXX</li>
+          </ul>
+        </div>
+
+        <div className=" flex  md:pt-7">
+          <Link target="_blank" href="facebook.com">
+            <Image src={FacebookIcon} alt="" className="h-8 w-8 text-withe  " />
+          </Link>
+          <Link target="_blank" className="ml-2" href="instagram.com">
+            <Image src={InstagramIcon} alt="" className="h-8 w-8 text-withe" />
           </Link>
         </div>
       </div>
 
-      <CopyRightSection datenshutz={footer?.datenschutz} link={footer.link}/>
-    </div>
+      <CopyRightSection lang={lang} copyrightTranslation={footer} />
+      <div className="bg-black w-full py-5">
+        <p className="text-center	text-white font-bold ">
+          {footer.block1.title +
+            ' | ' +
+            footer.impressum +
+            ' | ' +
+            footer.datenschutz}
+        </p>
+      </div>
+    </>
   );
 };
 

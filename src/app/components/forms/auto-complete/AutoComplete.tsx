@@ -1,9 +1,10 @@
+import { FORM_ERRORS } from '@/app/context/actions';
+import { useFormContext } from '@/app/hooks/useFormContext';
 import { getFormCookies } from '@/cookies/cookies';
-import { SECOND_FORM } from '@/cookies/cookies.d';
+import { FOURTH_FORM } from '@/cookies/cookies.d';
 import { cities } from '@/utils/data';
 import React, { useEffect, useState } from 'react';
 import { ReactSearchAutocomplete } from 'react-search-autocomplete';
-import style from './MySearchAutocomplete.module.css';
 
 type Item = {
   id: number;
@@ -12,29 +13,36 @@ type Item = {
 };
 
 type AutoCompleteProps = {
-  handleOnSearch?: () => void;
   handleOnSelect: any;
+  handleOnSearch: any;
+  locationFromParent: string;
   handleOnHover?: () => void;
   handleOnFocus?: () => void;
-  location?: string;
 };
 
 const AutoComplete: React.FC<AutoCompleteProps> = ({
   handleOnFocus,
+  locationFromParent,
   handleOnHover,
   handleOnSearch,
   handleOnSelect,
-  location,
 }) => {
-  const [defaultValue, setDefaultValue] = useState<string>();
+  const [location, setLocation] = useState<string>(locationFromParent);
+  const { dispatch, formErrors } = useFormContext();
 
-  console.log(location, 'this is my location');
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  console.log(formErrors);
+
   useEffect(() => {
-    const valueFromCookies = getFormCookies(SECOND_FORM);
-    setDefaultValue(valueFromCookies?.location);
-  });
+    dispatch({ type: FORM_ERRORS, payload: true });
 
+    const formValues = getFormCookies(FOURTH_FORM);
+
+    formValues && !location && setLocation(formValues?.location);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location]);
+
+  // Formatting the text
   const formatResult = (item: any) => {
     return (
       <>
@@ -53,8 +61,8 @@ const AutoComplete: React.FC<AutoCompleteProps> = ({
       showItemsOnFocus={false}
       onSelect={handleOnSelect}
       onFocus={handleOnFocus}
-      inputSearchString={defaultValue && defaultValue}
-      placeholder={location}
+      autoFocus
+      inputSearchString={location}
       // autoFocus
       formatResult={formatResult}
       styling={{
@@ -67,13 +75,12 @@ const AutoComplete: React.FC<AutoCompleteProps> = ({
         color: '#212121',
         fontSize: '16px',
         fontFamily: '',
-        iconColor: 'black',
+        iconColor: 'white',
         lineColor: 'rgb(232, 234, 237)',
         placeholderColor: 'grey',
         clearIconMargin: '3px 14px 0 0',
         searchIconMargin: '0 0 0 .4rem',
       }}
-      // styling={style}
     />
   );
 };

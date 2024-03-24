@@ -1,12 +1,10 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { VariantProps, cva } from 'class-variance-authority';
 import React, { ButtonHTMLAttributes, FC } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { cn } from '@/utils/utils';
-import AnimateClick from '../animate-click/AnimateClick';
 
 interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
@@ -16,17 +14,21 @@ interface ButtonProps
 }
 
 const buttonVariants = cva(
-  'py-3.5 px-8 w-52 uppercase text-white font-medium  flex justify-center rounded-lg focus:outline-none focus:shadow-outline',
+  'w-full py-3 text-white font-medium  flex justify-center px-4 rounded focus:outline-none focus:shadow-outline',
 
   {
     variants: {
       variant: {
-        default: 'bg-black w-full text-white hover:bg-slate-800 mx-auto',
-        primary: 'bg-primaryColor w-full hover:opacity-90 mx-auto',
-        danger: 'bg-red-500 w-full text-white hover:bg-red-600 mx-auto',
+        default: 'bg-primaryColor w-full text-white hover:opacity-90',
+        primary: 'bg-primaryColor hover:opacity-90',
+        outlinePrimary:
+          'text-[#2B8049] border border-[#2B8049] hover:opacity-90',
+        outlineWarning:
+          'text-[#F36D38] border border-[#F36D38] hover:opacity-90',
+        disabled: 'bg-primaryColor opacity-50',
+        danger: 'bg-red-500 w-full text-white hover:bg-red-600',
         outline:
-          'w-full mx-auto text-white border border-slate-300 hover:bg-primaryColor hover:text-white hover:border-primaryColor',
-        disabled: 'bg-primaryColor opacity-30 w-full text-white mx-auto',
+          'w-full text-white border border-slate-300 hover:bg-primaryColor hover:text-white hover:border-primaryColor',
       },
     },
 
@@ -46,7 +48,9 @@ const Button: FC<ButtonProps> = ({
 }) => {
   if (href) {
     return (
-      <AnimateClick>
+      // <AnimateClick>
+      <>
+        {' '}
         {icon ? (
           <Link
             href={href}
@@ -65,20 +69,22 @@ const Button: FC<ButtonProps> = ({
             {children}
           </Link>
         )}
-      </AnimateClick>
+      </>
+
+      //  </AnimateClick>
     );
   }
   return (
-    <AnimateClick>
-      <button {...props} className={cn(buttonVariants({ variant, className }))}>
-        <div className="flex items-center">
-          <span className="mr-2">
-            {icon ? <Image src={icon} alt={'Icon'} /> : ''}
-          </span>
-          {children}
-        </div>
-      </button>
-    </AnimateClick>
+    // <AnimateClick>
+    <button {...props} className={cn(buttonVariants({ variant, className }))}>
+      <div className="flex items-center">
+        <span className="mr-2">
+          {icon ? <Image src={icon} alt={'Icon'} /> : ''}
+        </span>
+        {children}
+      </div>
+    </button>
+    //</AnimateClick>
   );
 };
 

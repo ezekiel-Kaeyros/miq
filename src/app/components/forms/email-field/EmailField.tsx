@@ -7,7 +7,7 @@ const EmailField: React.FC<EmailFieldProps> = ({ props }) => {
   return (
     <>
       <label
-        className="font-bold block mb-1 mt-6 text-primaryColor"
+        className="font-medium block mb-1 mt-6 text-primaryColor"
         htmlFor="username"
       >
         Email

@@ -5,10 +5,11 @@ export const useFormContext = () => {
   const { state, dispatch } = useContext(FormContext);
   let step = state.step;
   let formData = state.formData;
-  let formErrors: boolean = state?.formErrors;
-  let reportingPerson: 'myself' | 'andere' | 'onBehalf' | 'organization' =
+  let reportingPerson: 'myself' | 'andere' | 'organization' | 'onBehalf' =
     state?.reportingPerson;
-
   let isEditing: boolean = state?.isEditing;
-  return { step, formData, dispatch, formErrors, reportingPerson, isEditing };
+  let formErrors: boolean = state?.formErrors;
+  let formValue:any=state.formValue;
+  let id_:string=state.id
+  return { step, formData, reportingPerson, formErrors, dispatch, isEditing,formValue, id_ };
 };

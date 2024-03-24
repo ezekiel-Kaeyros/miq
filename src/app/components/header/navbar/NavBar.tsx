@@ -3,46 +3,59 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import LocaleSwitcher from '../locale-switcher/locale-switcher';
 import Image from 'next/image';
-import Logo from '../../../../../public/logo-full.png';
+import Logo from '../../../../../public/logo.svg';
+import { useClickOutside } from '@/app/hooks/useClickOutside';
 import { usePathname } from 'next/navigation';
-
-type NavBarProps = {
-  navigation: any;
-  lang: string;
-};
+import { NavBarProps } from './navbar.d';
+import { Button } from '../../button/Button';
 
 const NavBar: React.FC<NavBarProps> = ({ navigation, lang }) => {
   const [navbar, setNavbar] = useState<boolean>(false);
-
+  const [toggle, setToggle] = useState<boolean>(false);
+  const [toggle1, setToggle1] = useState<boolean>(false);
+ 
   const pathname = usePathname();
+  const urlSplit=pathname.split('/')
 
-  const meldenPath = pathname.split('/').pop();
   /* Container 36 */
 
+  let domNode = useClickOutside(() => {
+    setNavbar(false);
+    setToggle(false);
+  });
+
   return (
-    <nav className="w-full relative  z-20 h-24 border-b-2 border-secondary md:border-none">
-      <div className="justify-between  mx-auto  md:items-center md:flex md:mx-16 lg:mx-24 md:border-b-3 md:border-secondary ">
-        <div className={`${navbar ? ' mt-4' : ''} flex  flex-col mt-4 md:mt-0`}>
+    <nav ref={domNode} className="w-full relative z-20">
+      <div className="w-full border-b-[1.2px] py-5 border-black">
+        <div className="xl:mr-12 xl:opacity-100 w-full lg:w-fit md:w-full sm:ml-auto">
+          {/* Language switcher */}
+
+          <LocaleSwitcher />
+        </div>
+      </div>
+      <div className="w-full xl:w-full items-center relative  py-12 xl:py-4 justify-between px-2 mx-auto xl:items-center flex  bg-white xl:flex xl:px-8">
+        <div
+          className={`${
+            navbar
+              ? 'bg-menuAndFooterColor w-full absolute pt-2 top-0 px-0 right-0 left-0 shadow  '
+              : 'w-full'
+          } flex  h-full justify-center  absolute xl:relative top-0 left-0 right-0  flex-col xl:mt-0`}
+        >
           <div
-            className={`flex ${
-              navbar ? '' : ''
-            } z-10 items-center justify-between py-3 h-24`}
+            className={`flex lg:px-8 xl:px-2 w-full z-10 items-center justify-between py-0 `}
           >
-            <Link href="/">
-              <Image width="261" src={Logo} alt="Logo" height="80" />
+            <Link className="pt-1" href={'/' + urlSplit[1]}>
+              <Image className="md:w-96 w-72" src={Logo} alt="Logo" />
             </Link>
-            <div className="md:hidden z-30 relative">
-              <LocaleSwitcher />
-            </div>
-            <div className="md:hidden flex flex-col">
+            <div className="xl:hidden flex flex-col">
               <button
-                className="p-2 text-gray-700 rounded-md outline-none "
+                className="p-0 mr-1 text-gray-700  outline-none focus:border-gray-400 focus:border-none"
                 onClick={() => setNavbar(!navbar)}
               >
                 {navbar ? (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="w-10 h-10"
+                    className="w-12 h-12"
                     viewBox="0 0 20 20"
                     fill="#000000"
                   >
@@ -55,11 +68,11 @@ const NavBar: React.FC<NavBarProps> = ({ navigation, lang }) => {
                 ) : (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="w-10 h-10"
+                    className="w-12 h-12"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke={meldenPath !== '/' ? `#005F6AFF` : '#ffffff'}
-                    strokeWidth={2}
+                    stroke="#000000"
+                    strokeWidth={1.5}
                   >
                     <path
                       strokeLinecap="round"
@@ -75,70 +88,214 @@ const NavBar: React.FC<NavBarProps> = ({ navigation, lang }) => {
           {/* Navigation Links mobile version*/}
 
           <nav
-            className={`container ${
-              navbar ? 'block' : 'hidden'
-            } flex items-center  justify-between `}
+            className={`container  z-10 ${
+              navbar ? 'block w-full' : 'hidden w-full'
+            } flex absolute xl:hidden right-0 ml-auto top-24 left-0 bg-menuAndFooterColor z-50 px-8  text-textColor items-start justify-between `}
           >
-            <ul className="flex w-full shadow-md flex-col mb-8">
-              <li className="bg-white border-secondary py-6 w-full border-b-[1px]">
-                <Link className="uppercase px-4 " href={`/${lang}`}>
-                  {navigation.home}
+            <ul className="flex flex-col gap-y-4 pt-8 mb-8">
+              {/* <li>
+                <Link href={`/${lang}`}>{navigation?.home}</Link>
+              </li> */}
+              <li>
+                <Link href={`/${lang}/report`}>
+                  {navigation?.reportIncident}
                 </Link>
               </li>
-              <li className="bg-white border-secondary border-b-[1px] py-6">
-                <Link className="uppercase px-4" href={`/${lang}/about`}>
-                  {navigation.about}
-                </Link>
+              {/* About queer section */}
+              <li onClick={() => setToggle1(!toggle1)} className="relative">
+                <div className={`${toggle1 ? 'font-bold' : ''} cursor-pointer`}>
+                  {navigation.aboutQueer?.title}
+                </div>
+                {toggle1 && (
+                  <ul className="bg-white py-3 px-6 -left-6 w-[15rem] flex flex-col shadow-xl absolute top-6 z-10">
+                    <Link
+                      href={`/${lang}/queerphobia/#whatIsQueerphobia`}
+                      className="py-2"
+                    >
+                      {navigation.aboutQueer?.firstSubmenu}
+                    </Link>
+                    <Link href={`/${lang}/queerphobia#iNeedHelp`}>
+                      {navigation.aboutQueer?.secondSubmenu}
+                    </Link>
+                    <Link href={`/${lang}/queerphobia#glossary`}>
+                      {navigation.aboutQueer?.thirdSubmenu}
+                    </Link>
+                  </ul>
+                )}
               </li>
-              <li className="bg-white border-secondary border-b-[1px] py-6">
-                <Link className="uppercase px-4 " href={`/${lang}/faqs`}>
-                  FAQs
-                </Link>
+              {/* About us section */}
+              <li onClick={() => setToggle(!toggle)} className="relative">
+                <div className={`${toggle ? 'font-bold' : ''} cursor-pointer`}>
+                  <Link href={`/${lang}/about-us`}>
+                    {navigation.aboutUs?.title}
+                  </Link>
+                </div>
+                {toggle && (
+                  <ul className="bg-white py-3 px-6 -left-6 w-[15rem] flex flex-col shadow-xl absolute top-6 z-10">
+                    <Link href={`/${lang}/about-us/#team`} className="py-2">
+                      MIQ NRW
+                    </Link>
+                    <Link href={`/${lang}/about-us/#partners`}>
+                      {navigation.aboutUs?.partners}
+                    </Link>
+                    <Link href={`/${lang}/about-us/#news`} className="py-2">
+                      {navigation.aboutUs?.news}
+                    </Link>
+                    <Link href="/about-us/#referalCounseling">
+                      {navigation.aboutUs?.referalCounseling}
+                    </Link>
+                    <Link href={`/${lang}/about-us/#publications`}>
+                      {navigation.aboutUs?.publications}
+                    </Link>
+                  </ul>
+                )}
+              </li>
+              {/* FAQs link */}
+              <li>
+                <Link href={`/${lang}/faqs`}>{navigation?.faqs}</Link>
               </li>
             </ul>
+            <div className="pt-8 mb-8 sm:block hidden">
+              <LocaleSwitcher />
+            </div>
           </nav>
         </div>
-        <div>
+        <div className="xl:justify-between  text-textColor items-center w-full lg:w-[230rem]  xl:w-[230rem] hidden xl:flex">
           {/* Horizontal or desktop navigation */}
           <nav
-            className={`container opacity-0 md:opacity-100 md:block flex px-3 items-center justify-between `}
+            className={`container w-full opacity-0 xl:opacity-100 xl:block flex  items-center justify-between  `}
           >
-            <ul className="flex gap-x-8">
-              <li
-                className={` ${
-                  pathname === `/${lang}`
-                    ? 'font-bold border-b-2 border-secondary'
-                    : 'text-black'
-                }`}
-              >
-                <Link href={`/${lang}`}>{navigation.home}</Link>
+            <ul className="flex w-full space-x-6 2xl:space-x-8">
+              {/* <li>
+                <Link
+                  className={`${
+                    pathname === '/en' ||
+                    pathname == '/de' ||
+                    pathname == '/de-LS'
+                      ? 'font-bold'
+                      : ''
+                  }`}
+                  href={`/${lang}`}
+                >
+                  {navigation?.home}
+                </Link>
+              </li> */}
+              <li>
+                <Link
+                  className={`${
+                    pathname?.split('/')[2] === 'report' ? 'font-bold' : ''
+                  }`}
+                  href={`/${lang}/report`}
+                >
+                  {navigation?.reportIncident}
+                </Link>
               </li>
-              <li
-                className={` ${
-                  pathname === `/${lang}/about`
-                    ? 'font-bold border-b-2 border-secondary'
-                    : 'text-black'
-                }`}
-              >
-                <Link href={`/${lang}/about`}>{navigation.about}</Link>
+              {/* About Queerphobia link */}
+              <li className="relative h-full [&>*]:hover:flex">
+                <Link
+                  href={`/${lang}/queerphobia`}
+                  className={`hover:font-bold relative z-10 ${
+                    pathname?.split('/')[2] === 'queerphobia' ? 'font-bold' : ''
+                  } cursor-pointer`}
+                >
+                  {navigation.aboutQueer?.title}
+                </Link>
+                {/* Submenu About Queerphobia */}
+                <ul className="hidden bg-white shadow-lg py-3 px-6 text-sm left-0 w-[18rem] flex-col  absolute top-4 z-0 pt-4">
+                  <Link
+                    href={`/${lang}/queerphobia/#whatIsQueerphobia`}
+                    className="py-2 hover:font-bold"
+                  >
+                    {navigation.aboutQueer?.firstSubmenu}
+                  </Link>
+                  <Link
+                    className="py-2 hover:font-bold"
+                    href={`/${lang}/queerphobia#iNeedHelp`}
+                  >
+                    {navigation.aboutQueer?.secondSubmenu}
+                  </Link>
+                  <Link
+                    className="py-2 hover:font-bold"
+                    href={`/${lang}/queerphobia#glossary`}
+                  >
+                    {navigation.aboutQueer?.thirdSubmenu}
+                  </Link>
+                </ul>
               </li>
-              <li
-                className={` ${
-                  pathname === `/${lang}/faqs`
-                    ? 'font-bold border-b-2 border-secondary'
-                    : 'text-black'
-                }`}
-              >
-                <Link href={`/${lang}/faqs`}>FAQs</Link>
+
+              {/* About us link */}
+              <li className="relative [&>*]:hover:flex">
+                <Link
+                  href={`/${lang}/about-us`}
+                  className={`hover:font-bold relative z-10 ${
+                    pathname?.split('/')[2] === 'about-us' ? 'font-bold' : ''
+                  } cursor-pointer`}
+                >
+                  {navigation.aboutUs?.title}
+                </Link>
+                {
+                  <ul className="hidden bg-white py-3 px-6 text-sm -left-6 w-[18rem] flex-col  absolute top-4.5 z-0 pt-4">
+                    <Link
+                      className="hover:font-bold py-3"
+                      href="/about-us/#team"
+                    >
+                      MIQ NRW
+                    </Link>
+                    <Link
+                      className="hover:font-bold"
+                      href="/about-us/#partners"
+                    >
+                      {navigation.aboutUs?.partners}
+                    </Link>
+                    <Link
+                      className="hover:font-bold py-3"
+                      href="/about-us/#news"
+                    >
+                      {navigation.aboutUs?.news}
+                    </Link>
+                    <Link
+                      className="hover:font-bold "
+                      href="/about-us/#referalCounseling"
+                    >
+                      {navigation.aboutUs?.referalCounseling}
+                    </Link>
+                    <Link
+                      className="hover:font-bold py-3"
+                      href="/about-us/#publications"
+                    >
+                      {navigation.aboutUs?.publications}
+                    </Link>
+                  </ul>
+                }
+              </li>
+              <li>
+                <Link
+                  className={`${
+                    pathname?.split('/')[2] === 'faqs' ? 'font-bold' : ''
+                  } relative z-10`}
+                  href={`/${lang}/faqs`}
+                >
+                  {navigation?.faqs}
+                </Link>
               </li>
             </ul>
-            {/* <LocaleSwitcher /> */}
           </nav>
-        </div>
-        <div className="opacity-0 md:opacity-100">
-          {/* Language switcher */}
+          {/* <div className="w-fit xl:pr-4 "> */}
+          <Link href={`/${lang}/report`}>
+            {' '}
+            <Button
+              className={` ${
+                pathname === '/' + lang + ''
+                  ? 'xl:pr-4 '
+                  : 'fixed right-4 top-28'
+              } ${pathname === '/' + lang + '/report' && 'hidden'} w-64 `}
+              variant="primary"
+            >
+              {navigation?.button}
+            </Button>
+          </Link>
 
-          <LocaleSwitcher />
+          {/* </div> */}
         </div>
       </div>
     </nav>

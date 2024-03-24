@@ -1,184 +1,144 @@
-import React, { use, useEffect, useState } from 'react';
-import Image from 'next/image';
-import CompletedIcon from '../../../../../../public/icons/completed.svg';
-import EditBlock from './EditBlock';
-import {
-  clearFormCookies,
-  getFormCookies,
-  getFormStep,
-} from '@/cookies/cookies';
-import { FIRST_FORM, SECOND_FORM } from '@/cookies/cookies.d';
+import React, { useEffect, useState } from 'react';
+import TextArea from '../../text-area/TextArea';
+import FormHeader from '../header/header';
 import { useFormContext } from '@/app/hooks/useFormContext';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { THIRD_FORM } from '@/cookies/cookies.d';
-// import { LAST_STEP, NEXT_STEP } from '@/app/context/actions';
 import { FORM_ERRORS, LAST_STEP, NEXT_STEP } from '@/app/context/actions';
-import { ThirdFromValues } from './thirdStep';
-import { identityData } from '../first-step/firstFormData';
-import { organization } from '../second-step/secondFormData';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { ThirdFormValues } from './thirdStep.d';
+import { clearFormCookiesStep, getFormCookies, getFormStep, setFormCookies } from '@/cookies/cookies';
+import { FOURTH_FORM, SECOND_FORM, THIRD_FORM } from '@/cookies/cookies.d';
+import { useScrollOnTop } from '@/app/hooks/useScrollOnTop';
 
 type ThirdStepProps = {
   thirdStepTranslation: {
-    title1: string;
-    title2: string;
-    title3: string;
-    title4: string;
-    headerTit: string;
+    title: string;
+    description: string;
+    placeholder: string;
+    disclaimer: string;
+    mandatory: string;
+    minCharacters: string;
+    hints: { title: string; list: string[] };
   };
+  id?: string;
 };
 
-const ThirdStep: React.FC<ThirdStepProps> = ({ thirdStepTranslation }) => {
+const ThirdStep: React.FC<ThirdStepProps> = ({ thirdStepTranslation, id }) => {
+  const { dispatch, reportingPerson, isEditing, formErrors } = useFormContext();
+  const [question] = useState<string>(thirdStepTranslation?.title);
+
+  // Dynamic hints description
+
   const {
+    register,
     handleSubmit,
+    watch,
+    setValue,
     formState: { errors },
-  } = useForm<ThirdFromValues>();
+  } = useForm<ThirdFormValues>();
 
-  let secondForm: {
-    step: number;
-    question: string;
-    otherFormOfDisc: string;
-    haveYouReported: string;
-    manifestationOfDiscrimination: string;
-    description: string;
-    question1: string;
-    question2: string;
-    question3: string;
-    question4: string;
-  } = getFormCookies(SECOND_FORM);
+  // const watchAllFields = watch();
+  let description: string = watch('description');
+  // Getting form cookies
+  let formValues: { description: string; question: string } = getFormCookies(SECOND_FORM);
+console.log('formValues',formValues);
 
-  let firstForm: {
-    periodOfTime: string;
-    step: number;
-    question1: string;
-    question2: string;
-    question3: string;
-    question4: string;
-    question5: string;
-    gender: string;
-    age: string;
-    genderFreeField: string;
-    typeOfOrganization: string[];
-    numberOfEmployees: string;
-    typeOfOrganizationFreeField: string;
-    happenedOnlineFreeField: string;
-    PeriodOfTimeFreeField: string;
-    happenedOnline: string;
-    identity: string;
-    identificationData: string;
-    dateRange: any;
-    incidentDate: any;
-    dateStart: any;
-    location: any;
-    employeeAge: string;
-    reportingAge: string;
-  } = getFormCookies(FIRST_FORM);
+  if (id && id == 'fourthForm') {
+  
+    formValues = getFormCookies(FOURTH_FORM);
+  }
 
-  const { dispatch, reportingPerson, isEditing } = useFormContext();
+  // Scroll on top
+  useScrollOnTop();
 
-  const onSubmit: SubmitHandler<any> = (data) => {
-    isEditing && reportingPerson === 'myself'
-      ? dispatch({ type: LAST_STEP, payload: 10 })
-      : dispatch({ type: NEXT_STEP, payload: 'DATA 1' });
-    clearFormCookies();
+  useEffect(() => {
+    dispatch({ type: FORM_ERRORS, payload: true });
+    if (description && description?.length >= 50) {
+      dispatch({ type: FORM_ERRORS, payload: false });
+    } else {
+      dispatch({ type: FORM_ERRORS, payload: true });
+    }
+
+    // Setting default values if exists in cookies
+if (!description || (description && description.length<50)) {
+   dispatch({ type: FORM_ERRORS, payload: true });
+}else{
+   dispatch({ type: FORM_ERRORS, payload: false });
+}
+
+
+    if (formValues && !description) {
+      description !== formValues?.description &&
+        setValue('description', formValues?.description);
+     
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [description, formValues?.description]);
+
+  // Triggered when submitting form
+  const onSubmit: SubmitHandler<ThirdFormValues> = (data) => {
+    
+    let step = getFormStep();
+    let dataWithQuestion = { question, step, ...data };
+
+     id !== 'fourthForm'
+      ? setFormCookies(dataWithQuestion, SECOND_FORM)
+      : setFormCookies(dataWithQuestion, FOURTH_FORM);
+
+    dispatch({ type: NEXT_STEP, payload: 'DATA 1' });
+    // isEditing && reportingPerson === 'myself'
+    //   ? dispatch({ type: LAST_STEP, payload: 11 })
+    //   : dispatch({ type: NEXT_STEP, payload: 'DATA 1' });
   };
 
-  useEffect(() => {}, [firstForm, secondForm]);
-  console.log(identityData, 'this is my identityData');
-  console.log(reportingPerson, 'thi is my reporting person');
-  // console.log(firstForm?.typeOfOrganization, 'this is my typeOfOrganization');
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)} id="fourthForm">
-      {/* // <div onClick={handleSubmitBtn} id="fourthForm"> */}
-      <div className="p-4 sm:px-10 xl:px-60">
-        <div>
-          <h1 className="text-2xl font-bold text-center mb-6 [word-spacing:10px] tracking-widest">
-            {thirdStepTranslation?.title3}
-          </h1>
-          <h2 className="font-bold mb-6 [word-spacing:10px] tracking-widest">
-            {thirdStepTranslation?.title4}
-          </h2>
-        </div>
-        {/* This is for first form */}
-        <div className="mt-10 grid grid-cols-2 gap-x-20">
-          <EditBlock
-            step={firstForm?.step}
-            question={firstForm?.question1}
-            answer={firstForm?.identificationData}
-          />
-          <EditBlock
-            step={firstForm?.step}
-            question={firstForm?.question2}
-            answer={
-              reportingPerson === 'organization'
-                ? firstForm?.typeOfOrganization
-                : firstForm?.gender
-            }
-          />
-          <EditBlock
-            step={firstForm?.step}
-            question={firstForm?.question3}
-            answer={
-              reportingPerson === 'organization'
-                ? firstForm?.employeeAge
-                : firstForm?.reportingAge
-            }
-          />
-          <EditBlock
-            step={firstForm?.step}
-            question={firstForm?.question4}
-            answer={
-              firstForm && firstForm?.dateRange?.includes('undefined')
-                ? firstForm?.dateRange
-                : firstForm?.incidentDate
-            }
-          />
-          <EditBlock
-            step={firstForm?.step}
-            question={firstForm?.question5}
-            answer={
-              firstForm?.location
-                ? [firstForm?.happenedOnline, firstForm?.location]
-                : firstForm?.happenedOnline
-            }
-          />
-        </div>
+    <div className="relative w-full">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        id={id === 'fourthForm' ? 'fourthForm' : 'secondForm'}
+        className="h-full lg:w-[35rem]"
+      >
+        <FormHeader
+          title={thirdStepTranslation?.title}
+          subTitle={thirdStepTranslation?.description}
+        />
+        <p className="text-sm -mt-12 mb-8">{thirdStepTranslation?.mandatory}</p>
+        <TextArea
+          name="vorfall"
+          props={register('description')}
+          placeholder={thirdStepTranslation?.placeholder}
+          type="text"
+        />
+        {formErrors && description?.length !== 0 && (
+          <label className="text-red-500 text-xs pl-2">
+            {thirdStepTranslation?.minCharacters}
+          </label>
+        )}
+        <p className="flex items-center mt-4 text-xs text-red-600 pb-3  pl-0">
+          <span className="mr-2"></span>
+          {thirdStepTranslation?.disclaimer}
+        </p>
+      </form>
 
-        {/* This is for my second Form */}
-        <div>
-          <h1 className="text-2xl font-bold mt-20 [word-spacing:10px] tracking-widest">
-            {thirdStepTranslation?.headerTit}
-          </h1>
-          <div className="">
-            <div className=" xl:w-full ">
-              <EditBlock
-                step={secondForm?.step}
-                question={secondForm?.question1}
-                answer={secondForm?.description}
-              />
-            </div>
-            <div className="grid grid-cols-2 mt-10 gap-x-20">
-              <EditBlock
-                step={secondForm?.step}
-                question={secondForm?.question2}
-                answer={secondForm?.manifestationOfDiscrimination}
-              />
-              <EditBlock
-                step={secondForm?.step}
-                question={secondForm?.question3}
-                answer={secondForm?.otherFormOfDisc}
-              />
-              <EditBlock
-                step={secondForm?.step}
-                question={secondForm?.question4}
-                answer={secondForm?.haveYouReported}
-              />
-            </div>
-          </div>
-        </div>
+      <div className="mt-16 w-full md:max-w-md lg:mt-8  2xl:mt-0 2xl:absolute  lg:-top-0 lg:-right-[38rem]">
+        <FormHeader title={thirdStepTranslation?.hints?.title}>
+          {reportingPerson !== 'onBehalf' ? (
+            <ul className="list-disc pl-8">
+              {thirdStepTranslation?.hints?.list.map((element: string) => (
+                <li key={`${element}`}>{element}</li>
+              ))}
+            </ul>
+          ) : (
+            <ul className="list-disc pl-8">
+              {thirdStepTranslation?.hints?.list
+                ?.slice(0, thirdStepTranslation?.hints?.list?.length - 1)
+                ?.map((element: string) => (
+                  <li key={`${element}`}>{element}</li>
+                ))}
+            </ul>
+          )}
+        </FormHeader>
       </div>
-      {/* </div> */}
-    </form>
+    </div>
   );
 };
 

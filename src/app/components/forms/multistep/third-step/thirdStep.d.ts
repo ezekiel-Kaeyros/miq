@@ -1,10 +1,3 @@
-export type ThirdStepProps = {
-  thirdStepTranslation: {
-    title: string;
-    description: string;
-  };
-};
-
-export type ThirdFromValues = {
-  validation: string[];
+export type ThirdFormValues = {
+  description: string;
 };

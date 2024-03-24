@@ -5,20 +5,25 @@ import {
   EDIT_STEP,
   FORM_ERRORS,
   IS_EDITING,
+  JUMP_STEP_FOR_WITNESS,
   LAST_STEP,
   NEXT_STEP,
   PREV_STEP,
   REPORTING_PERSON,
   SUBMIT_FORM,
+  FORM_VALUE,
+  ID_FORM
 } from './actions';
 import { getFormStep, setFormStep } from '@/cookies/cookies';
 
 type FormType = {
   step: number;
   formData: Array<any>;
-  formErrors: boolean;
-  reportingPerson: 'myself' | 'andere' | 'onBehalf' | 'organization';
   isEditing: boolean;
+  reportingPerson: 'myself' | 'andere' | 'organization' | 'onBehalf';
+  formErrors: boolean;
+  formValue:any,
+  id:string
 };
 
 type ActionType = {
@@ -27,11 +32,13 @@ type ActionType = {
 };
 
 const initialState: FormType = {
-  step: 1,
+  step: getFormStep(),
   formData: [],
-  formErrors: true,
   reportingPerson: 'myself',
   isEditing: false,
+  formErrors: true,
+  formValue:'',
+  id:''
 };
 
 const reducer = (initialState: FormType, action: ActionType) => {
@@ -44,11 +51,42 @@ const reducer = (initialState: FormType, action: ActionType) => {
         formData: [initialState.formData, ...action.payload],
       };
 
+    case JUMP_STEP_FOR_WITNESS:
+      setFormStep(initialState?.step + 2);
+      return {
+        ...initialState,
+        step: getFormStep(),
+        formData: [initialState.formData, ...action.payload],
+      };
     case PREV_STEP:
       setFormStep(initialState?.step - 1);
       return {
         ...initialState,
         step: getFormStep(),
+      };
+
+    case FORM_ERRORS:
+      return {
+        ...initialState,
+        formErrors: action?.payload,
+      };
+
+    case FORM_VALUE:
+      return {
+        ...initialState,
+        formValue: action?.payload,
+      };
+
+    case ID_FORM:
+      return {
+        ...initialState,
+        id: action?.payload,
+      };
+
+    case REPORTING_PERSON:
+      return {
+        ...initialState,
+        reportingPerson: action?.payload,
       };
 
     case IS_EDITING:
@@ -71,17 +109,6 @@ const reducer = (initialState: FormType, action: ActionType) => {
         ...initialState,
         isEditing: true,
         step: getFormStep(),
-      };
-    case FORM_ERRORS:
-      return {
-        ...initialState,
-        formErrors: action?.payload,
-      };
-
-    case REPORTING_PERSON:
-      return {
-        ...initialState,
-        reportingPerson: action?.payload,
       };
 
     case SUBMIT_FORM:

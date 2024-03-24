@@ -5,10 +5,10 @@ import { usePathname } from 'next/navigation';
 import { i18n } from '@/i18n.config';
 import { useState } from 'react';
 import Image from 'next/image';
-import DownIcon from '../../../../../public/icons/downIcon.svg';
+import GermanLogo from '../../../../../public/images/germany-flag.svg';
+import EnglandLogo from '../../../../../public/images/england-flag.svg';
 import AnimateClick from '../../animate-click/AnimateClick';
-import polygon from '../../../../../public/icons/Polygon 2.svg';
-import { clearFormCookies } from '@/cookies/cookies';
+import LeicheSpracheLogo from '../../../../../public/icons/leichteSpracheIcon.png';
 
 export default function LocaleSwitcher() {
   const [toggle, setToggle] = useState<boolean>(false);
@@ -18,56 +18,83 @@ export default function LocaleSwitcher() {
     if (!pathName) return '/';
     const segments = pathName.split('/');
     segments[1] = locale;
-    clearFormCookies();
     return segments.join('/');
   };
 
   return (
-    <div className="flex z-50 flex-col relative items-center">
-      <div className="flex z-50 ">
-        <AnimateClick>
-          <div
-            onClick={() => setToggle(!toggle)}
-            className="flex gap-x-2 p-1 border-[1.5px] border-gray-400 rounded-xl items-center justify-center w-16 h-8"
-          >
-            {i18n.locales.map((locale) => {
-              return selectedLanguage == 'en'
-                ? locale.toUpperCase()[1]
-                : locale.toUpperCase()[0];
-            })}
-            <Image className="w-3" src={polygon} alt="down icon" />
-          </div>
-        </AnimateClick>
-      </div>
-      {toggle ? (
-        <ul className="flex absolute rounded-md px-3 w-16 py-1 top-8 z-40 right-0  h-fit bg-white shadow-lg flex-col gap-x-3">
-          {i18n.locales.map((locale) => {
-            return (
-              <li key={locale}>
-                <Link href={redirectedPathName(locale)} className="py-2">
-                  {locale === 'en' ? (
-                    <div
-                      onClick={() => setToggle(false)}
-                      className="flex items-center w-6 my-2 mr-2"
-                    >
-                      {locale.toUpperCase()}
-                    </div>
-                  ) : (
-                    <div
-                      onClick={() => setToggle(false)}
-                      className="flex items-center w-6 my-2 mr-2"
-                    >
-                      {locale.toUpperCase()}
-                    </div>
-                  )}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      ) : (
-        ''
-      )}
+    <div className="w-fit ml-auto lg:ml-0 lg:w-full mr-4 lg:mr-12 xl:mr-0">
+      <ul className="flex   lg:flex-row space-x-6 lg:space-x-0 xl:ml-24 text-slate-900 md:ml-0 md:space-y-0 justify-between items-center w-full  md:w-fit">
+        {i18n.locales.map((locale) => (
+          <AnimateClick key={locale}>
+            <Link
+              href={redirectedPathName(locale)}
+              className="text-slate-900 w-fit"
+            >
+              {locale === 'en' ? (
+                <div
+                  onClick={() => setToggle(false)}
+                  className="flex items-center w-fit"
+                >
+                  <Image
+                    className="mr-2 w-4 md:w-8"
+                    src={EnglandLogo}
+                    alt="Logo England"
+                  />
+                  <div
+                    className={`${
+                      pathName?.split('/')[1] === 'en'
+                        ? ' font-bold text-sm flex'
+                        : 'flex'
+                    }`}
+                  >
+                    English
+                  </div>
+                </div>
+              ) : locale === 'de' ? (
+                <div
+                  onClick={() => setToggle(false)}
+                  className="flex md:ml-2 md:mr-14 items-center w-fit"
+                >
+                  <Image
+                    className="mr-2 w-4 md:w-8"
+                    src={GermanLogo}
+                    alt="Logo Germany"
+                  />
+                  <div
+                    className={`${
+                      pathName?.split('/')[1] === 'de'
+                        ? ' font-bold text-sm'
+                        : 'flex text-sm '
+                    }`}
+                  >
+                    Deutsch
+                  </div>
+                </div>
+              ) : (
+                <div
+                  onClick={() => setToggle(false)}
+                  className="flex  items-center w-fit mr-2 lg:mr-8 xl:pr-0"
+                >
+                  <Image
+                    className="mr-2 w-4 md:w-8"
+                    src={LeicheSpracheLogo}
+                    alt="Leichte sprache logo"
+                  />
+                  <div
+                    className={`${
+                      pathName?.split('/')[1] === 'de-LS'
+                        ? ' font-bold text-sm md:w-[8rem]'
+                        : 'flex  md:w-[8rem] text-sm'
+                    }`}
+                  >
+                    Leichte Sprache
+                  </div>
+                </div>
+              )}
+            </Link>
+          </AnimateClick>
+        ))}
+      </ul>
     </div>
   );
 }

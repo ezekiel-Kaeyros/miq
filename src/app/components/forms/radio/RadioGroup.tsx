@@ -2,40 +2,37 @@ import React from 'react';
 
 type RadioGroupProps = {
   options: Array<any>;
-  title: string;
+  title?: string;
   props: any;
 };
 
 const RadioGroup: React.FC<RadioGroupProps> = ({ options, title, props }) => {
+  let id = 1;
   return (
-    <>
+    <div>
       <div className="mb-3 font-bold">{title}</div>
-      <div className="flex justify-center flex-col">
+      <div className="md:flex md:justify-between flex flex-col">
         {options?.map((radioElement) => (
-          <div
-            key={radioElement.id}
-            className={`flex md:mb-2 items-center sm:items-end justify-between`}
-          >
+          <div key={radioElement.id} className="flex items-center pl-4 ">
             <input
+              key={radioElement?.id}
               {...props}
               id={`${radioElement?.id}`}
               type="radio"
               value={radioElement.value}
               name={radioElement.name}
-              className="w-6 h-6 text-blue-600 bg-gray-100 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700"
+              className="w-6 h-6 text-primaryColor bg-gray-100 focus:ring-PrimaryColor  dark:ring-offset-gray-800 focus:ring-2 "
             />
             <label
               htmlFor={radioElement.id}
-              className={`w-full ml-2 md:ml-2  font-medium text-gray-900 ${
-                radioElement.id === options[0]?.id ? '' : 'md:mt-0 mt-2'
-              }`}
+              className="w-full py-3 ml-2 text-sm font-medium text-gray-900 "
             >
               {radioElement.label}
             </label>
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

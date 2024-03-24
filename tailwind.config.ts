@@ -1,10 +1,12 @@
 import type { Config } from 'tailwindcss';
+const { nextui } = require('@nextui-org/react');
 
 const config: Config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
@@ -15,30 +17,22 @@ const config: Config = {
       },
 
       colors: {
-        primaryColor: '#005F6AFF',
-        'secondary': '#FAFAFB',
-        'green': '#005F6A',
-        'neutral': '#ACAFB7',
-        'neutral-gray': '#BDC1C9',
-        'neutral-yellow': '#F4C43B',
+        primaryColor: '#E30303',
+        primary: '#463880',
+        secondaryColorSlate: '#EDEBF6',
+        menuAndFooterColor: '#EDEBF6',
+        dividerColor: '#463980',
+        textColor: '#1F1F1F',
+        btnReportsColorUncategorized: 'rgba(224, 0, 52, 0.2)',
+        btnReportsColorCategorized: 'rgba(25, 154, 70, 0.2)',
       },
       borderColor: {
-        'primary': '#005F6AFF',
-        'secondary': '#F4C43B'
+        primary: '#6E82FE',
+        secondary: '#EDEBF6',
       },
-      borderWidth: {
-        default: '1px',
-        '0': '0',
-        '2': '2px',
-        '3': '3px',
-        '4': '4px',
-        '6': '6px',
-      }, 
-      borderRadius: {
-        'cs': "10px",
-      }
     },
   },
-  plugins: [],
+  darkMode: 'class',
+  plugins: [nextui()],
 };
 export default config;

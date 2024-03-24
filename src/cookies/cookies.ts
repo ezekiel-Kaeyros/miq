@@ -1,5 +1,17 @@
 import cookies from 'js-cookie';
-import { FIRST_FORM, FORM_STEP, SECOND_FORM, USER_DATA } from './cookies.d';
+import {
+  EIGTH_FORM,
+  FIFTH_FORM,
+  FIRST_FORM,
+  FORM_STEP,
+  FOURTH_FORM,
+  NINETH_FORM,
+  SECOND_FORM,
+  SEVENTH_FORM,
+  SIXTH_FORM,
+  THIRD_FORM,
+  USER_DATA,
+} from './cookies.d';
 
 export const setUserCookies = (data: any) => {
   cookies.set(USER_DATA, JSON.stringify(data));
@@ -18,7 +30,7 @@ export const removeUserCookies = () => {
 
 export const getFormStep = (): number => {
   const step = cookies?.get(FORM_STEP);
-  return step ? JSON?.parse(step) : 1;
+  return step ? JSON.parse(step) : 1;
 };
 
 export const setFormStep = (step: number): void => {
@@ -36,8 +48,7 @@ export const setFormCookies = (data: any, formData: string) => {
 };
 
 export const getFormCookies = (formData: string) => {
-  let data = cookies.get(formData);
-
+  const data = cookies.get(formData);
   return data ? JSON.parse(data) : undefined;
 };
 
@@ -45,4 +56,16 @@ export const clearFormCookies = () => {
   cookies.remove(FORM_STEP);
   cookies.remove(FIRST_FORM);
   cookies.remove(SECOND_FORM);
+  cookies.remove(THIRD_FORM);
+  cookies.remove(FOURTH_FORM);
+  cookies.remove(FIFTH_FORM);
+  cookies.remove(SIXTH_FORM);
+  cookies.remove(SEVENTH_FORM);
+  cookies.remove(EIGTH_FORM);
+  cookies.remove(NINETH_FORM);
 };
+
+export const clearFormCookiesStep = (step:string) => {
+  cookies.remove(step);
+
+}
