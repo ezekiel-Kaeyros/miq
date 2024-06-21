@@ -20,4 +20,4 @@ COPY . .
 # COPY --from=BUILD_IMAGE /app/node_modules ./node_modules
 # ENV NODE_ENV=production
 EXPOSE 3000
-CMD ["npm", "dev"]
+CMD ["npm", "run", "dev"]
