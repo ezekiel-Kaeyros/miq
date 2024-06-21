@@ -10,9 +10,9 @@
     },
     "aboutUs": {
       "title": "Über uns",
-      "referalCounseling": "Verweisberatung",
+
       "news": "Aktuelles",
-      "publications": "Publikationen",
+
       "team": "Team",
       "partners": "Verbund & Kooperationen"
     },
@@ -148,7 +148,7 @@
         "title": "Wir sind MIQ und helfen dir gerne weiter!",
         "description": {
           "firstParagraph": "MIQ steht für  “Melde- und  Informationsstelle zu Queerfeindlichkeit” und ist ein Projekt, welches Queerfeindlichkeit in NRW aufzeigen möchte.",
-          "secondParagraph": " Du kannst auf unserer Website einen queerfeindlichen Vorfall melden. Wir sind außerdem eine Informationsstelle und zeigen Dir auf, wo Du weitere Beratung in NRW aufsuchen kannst."
+          "secondParagraph": "Du kannst auf unserer Website einen queerfeindlichen Vorfall melden. Wir sind außerdem eine Informationsstelle und zeigen Dir auf, wo Du weitere Beratung in NRW aufsuchen kannst."
         },
         "buttonText": "Vorfall melden"
       }
@@ -294,7 +294,7 @@
         },
         "fourthStepOrganization": {
           "title": "Wie viele Personen sind in der Organisation/Institution tätig?",
-          "subTitle": "Haupt- oder ehrenamtlich, oder in freier Mitarbeit",
+          "subTitle": "Haupt- oder ehrenamtlich oder in freier Mitarbeit",
           "mandatory": "* Pflichtfeld",
           "data": [
             {
@@ -338,7 +338,7 @@
             "label": "Es ist online passiert."
           },
           "secondOption": {
-            "title": "Stadt",
+            "title": "Ort",
             "name": "online",
             "value": "freeField",
             "id": "place"
@@ -411,15 +411,15 @@
             {
               "iD": 1,
               "name": "Yes",
-              "value": "Lesbophobia",
-              "id": "lesbophobia",
+              "value": "Lesbenfeindlichkeit",
+              "id": "Lesbenfeindlichkeit",
               "label": "Lesbenfeindlichkeit"
             },
             {
               "iD": 2,
               "name": "formOfDisc",
-              "value": "Homophobia",
-              "id": "homophobia",
+              "value": "Schwulenfeindlichkeit",
+              "id": "Schwulenfeindlichkeit",
               "label": "Schwulenfeindlichkeit"
             },
             {
@@ -432,7 +432,7 @@
             {
               "iD": 4,
               "name": "formOfDisc",
-              "value": "Transphobia",
+              "value": "Trans*feindlichkeit",
               "id": "trans",
               "label": "Trans*feindlichkeit"
             },
@@ -446,36 +446,36 @@
             {
               "iD": 6,
               "name": "formOfDisc",
-              "value": "Asexual discrimination",
-              "id": "asexual discrimination",
+              "value": "Asexuellenfeindlichkeit",
+              "id": "Asexuellenfeindlichkeit",
               "label": "Asexuellenfeindlichkeit"
             },
             {
               "iD": 7,
               "name": "formOfDisc",
-              "value": "Non-binary discrimination",
-              "id": "non-binary discrimination",
+              "value": "Nichtbinärfeindlichkeit",
+              "id": "Nichtbinärfeindlichkeit",
               "label": "Nichtbinärfeindlichkeit"
             },
             {
               "iD": 8,
               "name": "formOfDisc",
               "value": "Agenderfeindlichkeit",
-              "id": "agender discrimination",
+              "id": "Agenderfeindlichkeit",
               "label": "Agenderfeindlichkeit"
             },
             {
               "iD": 8,
               "name": "formOfDisc",
-              "value": "General queerphobia",
-              "id": "general queerphobia",
+              "value": "Queerfeindlichkeit allgemein",
+              "id": "Queerfeindlichkeit allgemein",
               "label": "Queerfeindlichkeit allgemein"
             },
             {
               "iD": 9,
               "name": "formOfDisc",
-              "value": "Other, specify",
-              "id": "other",
+              "value": "Anderes, und zwar",
+              "id": "Anderes",
               "label": "Anderes, und zwar"
             }
           ]
@@ -860,13 +860,6 @@
             "title": "Einwilligung",
             "description": "Mehrfachnennung möglich",
             "data": [
-              {
-                "id": "validate1",
-                "name": "validation",
-                "label": "Ich willige ein, dass meine Eingaben im Falle von Mehrfachdiskriminierung anonymisiert mit den zuständigen Meldestellen (Hyperlink zu Auflistung) geteilt werden.",
-                "value": "Ich willige ein, dass meine Eingaben im Falle von Mehrfachdiskriminierung anonymisiert mit den zuständigen Meldestellen (Hyperlink zu Auflistung) geteilt werden.",
-                "checked": false
-              },
               {
                 "id": "validation2",
                 "name": "validation",

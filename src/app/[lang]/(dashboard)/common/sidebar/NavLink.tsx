@@ -9,6 +9,7 @@ type NavLinkProps = {
   href: string;
   icon?: ReactNode;
   targetSegment?: string | null;
+  lang: string;
 };
 
 const NavLink: React.FC<NavLinkProps> = ({
@@ -16,8 +17,11 @@ const NavLink: React.FC<NavLinkProps> = ({
   href,
   icon,
   targetSegment,
+  lang,
 }) => {
   const activeSegment = useSelectedLayoutSegment();
+
+  console.log(activeSegment, 'this is my active segment');
 
   return (
     <Link

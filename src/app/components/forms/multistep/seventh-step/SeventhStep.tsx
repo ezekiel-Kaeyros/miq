@@ -6,7 +6,7 @@ import Checkbox from '../../checkbox/Checkbox';
 import FormHeader from '../header/header';
 import InputField from '../../text-field/InputField';
 import { clearFormCookiesStep, getFormCookies, getFormStep, setFormCookies } from '@/cookies/cookies';
-import { SEVENTH_FORM, SIXTH_FORM } from '@/cookies/cookies.d';
+import { SEVENTH_FORM, SIXTH_FORM, FIFTH_FORM } from '@/cookies/cookies.d';
 import { useScrollOnTop } from '@/app/hooks/useScrollOnTop';
 import { SeventhStepProps, SeventhStepValues } from './seventhStep';
 
@@ -37,23 +37,21 @@ const SeventhStep: React.FC<SeventhStepProps> = ({
       typeOfDiscrimination: string[];
       typeOfDiscriminationFreeField: string;
       question: string;
-    } = getFormCookies(SIXTH_FORM);
+    } = getFormCookies(FIFTH_FORM);
 
-    if (id && id === 'seventhForm') {
-      formValues = getFormCookies(SEVENTH_FORM);
-    }
+   
+
 
     dispatch({ type: FORM_ERRORS, payload: true });
 
     if (
-      !typeOfDiscrimination ||
-      (typeOfDiscrimination && typeOfDiscrimination?.length !== 0)
+      !typeOfDiscrimination
     ) {
       dispatch({ type: FORM_ERRORS, payload: false });
     } else {
-     if (typeOfDiscrimination && typeOfDiscrimination.length>0 && typeOfDiscrimination.includes(seventhStepTranslation.choices[8].value)) {
+     if (typeOfDiscrimination && typeOfDiscrimination.length>0 && typeOfDiscrimination.includes(seventhStepTranslation.choices[seventhStepTranslation.choices.length-1].value)) {
       dispatch({ type: FORM_ERRORS, payload: true });
-      if (typeOfDiscriminationFreeField.length>3) {
+      if ((typeOfDiscriminationFreeField && typeOfDiscriminationFreeField.length>3)) {
         dispatch({ type: FORM_ERRORS, payload: false });
       }else{
         dispatch({ type: FORM_ERRORS, payload: true });
@@ -62,7 +60,11 @@ const SeventhStep: React.FC<SeventhStepProps> = ({
       if (
         typeOfDiscrimination &&
         typeOfDiscrimination.length > 0 &&
-        !typeOfDiscrimination.includes(seventhStepTranslation.choices[8].value)
+        !typeOfDiscrimination.includes(
+          seventhStepTranslation.choices[
+            seventhStepTranslation.choices.length - 1
+          ].value
+        )
       ) {
         dispatch({ type: FORM_ERRORS, payload: false });
       }
@@ -80,16 +82,23 @@ const SeventhStep: React.FC<SeventhStepProps> = ({
         );
     } else if (
       (typeOfDiscrimination &&
-        typeOfDiscrimination?.includes('Anderes, und zwar') &&
+        typeOfDiscrimination?.includes(
+          typeOfDiscrimination[typeOfDiscrimination.length - 1]
+        ) &&
+        typeOfDiscriminationFreeField &&
         typeOfDiscriminationFreeField.length <= 3) ||
       (typeOfDiscrimination &&
-        typeOfDiscrimination?.includes('Other, specify') &&
-        typeOfDiscriminationFreeField?.length <= 3)
+        typeOfDiscrimination?.includes(
+          typeOfDiscrimination[typeOfDiscrimination.length - 1]
+        ) &&
+        !typeOfDiscriminationFreeField)
     ) {
-      dispatch({ type: FORM_ERRORS, payload: true });
+      // dispatch({ type: FORM_ERRORS, payload: true });
     } else {
       dispatch({ type: FORM_ERRORS, payload: false });
     }
+
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [typeOfDiscrimination, typeOfDiscriminationFreeField]);
 
@@ -98,12 +107,11 @@ const SeventhStep: React.FC<SeventhStepProps> = ({
     
     let step = getFormStep();
     let dataWithQuestion = { question, step, ...data };
+setFormCookies(dataWithQuestion, FIFTH_FORM);
+  //  console.log('step',step);
+   
 
-    id === 'seventhForm'
-      ? setFormCookies(dataWithQuestion, SEVENTH_FORM)
-      : setFormCookies(dataWithQuestion, SIXTH_FORM);
-
-     dispatch({ type: NEXT_STEP, payload: 'DATA 1' });
+     dispatch({ type: NEXT_STEP, payload: '' });
     // isEditing && reportingPerson === 'myself'
     //   ? dispatch({ type: LAST_STEP, payload: 11 })
     //   : dispatch({ type: NEXT_STEP, payload: 'DATA 1' });
@@ -112,7 +120,7 @@ const SeventhStep: React.FC<SeventhStepProps> = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      id={id === 'seventhForm' ? 'seventhForm' : 'sixthForm'}
+      id={'fifthForm'}
       className="lg:w-[38rem]"
     >
       <FormHeader

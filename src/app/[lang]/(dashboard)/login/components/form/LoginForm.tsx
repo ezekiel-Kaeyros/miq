@@ -17,10 +17,19 @@ import AuthService from '@/services/authService';
 import { usePathname, useRouter } from 'next/navigation';
 import toast, { Toaster } from 'react-hot-toast';
 import { Result } from 'postcss';
-import { setUserCookies } from '@/cookies/cookies';
-import InputField from '@/app/components/forms/text-field/InputField';
+import {
+  removeRefreshToken,
+  setRefreshToken,
+  setUserCookies,
+} from '@/cookies/cookies';
+// import InputField from '@/app/components/forms/text-field/InputField';
 import { AuthContext, AuthProvider } from '@/app/context/AuthContext';
 import { useAuth } from '@/app/hooks/useAuth';
+import { DecodeToken } from '../DecodeToken';
+import InputField from './InputField';
+import Link from 'next/link';
+import InputField2 from '@/app/components/forms/text-field/InputField2';
+// import { verify } from '@/app/api/utils/decode';
 
 interface IFormInput {
   email: string;
@@ -47,6 +56,7 @@ const LoginForm = () => {
     reset,
   } = useForm<IFormInput>({ mode: 'onChange' || 'onBlur' || 'onSubmit' });
   const { loginUser, user } = useAuth();
+  // removeRefreshToken();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -58,17 +68,29 @@ const LoginForm = () => {
     const response = new AuthService()
       .login(data)
       .then((result) => {
-        console.log('result', result);
+        if (result.status === 201) {
+          const user = DecodeToken(result.headers.authorization);
 
-        if (result.status == 201) {
-          loginUser(result.data.user[0]);
-          setUserCookies(result.data.user[0]);
-          window.location.href = '/en/dashboard';
-          toast.success(result.data.message);
-          setIsLoading(false);
+          user.then((result1) => {
+            // let user1:UserDataType=result1
+
+            if (typeof result1 == 'object') {
+              // console.log('result', typeof result1);
+              setUserCookies({
+                ...result1,
+                token: result.headers.authorization,
+              });
+              //  setRefreshToken(result.headers.authorization);
+              toast.success(result.data.message);
+              setIsLoading(false);
+              window.location.href = '/en/dashboard';
+            }
+          });
         }
       })
       .catch((error) => {
+        console.log('error', error);
+
         toast.error('Something went wrong, try again');
         setIsLoading(false);
       });
@@ -87,7 +109,7 @@ const LoginForm = () => {
   // console.log(user, 'ctx');
   useEffect(() => {
     if (user) {
-      console.log(user, 'user');
+      // console.log(user, 'user');
     }
   }, [user]);
   return (
@@ -105,7 +127,7 @@ const LoginForm = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <h1 className="text-3xl sm:text-4xl mb-4"></h1>
             <div className="w-full ">
-              <InputField
+              <InputField2
                 name="email"
                 type="email"
                 id="email"
@@ -120,7 +142,7 @@ const LoginForm = () => {
               />
             </div>
             <div className="w-full my-4 relative">
-              <InputField
+              <InputField2
                 name="password"
                 type={isPasswordVisible ? 'text' : 'password'}
                 id="password"
@@ -140,6 +162,14 @@ const LoginForm = () => {
                 className="absolute top-1/4 right-6 cursor-pointer w-7"
                 onClick={() => setIsPasswordVisible(!isPasswordVisible)}
               />
+            </div>
+            <div className="flex justify-end mr-4">
+              <Link
+                href="/reset-password"
+                className="hover:text-primary border-b-1 hover:border-b-1 hover:border-primary"
+              >
+                Forgot Password?
+              </Link>
             </div>
             <Button
               className="mt-7 rounded-lg text-sm sm:text-xl bg-primary"

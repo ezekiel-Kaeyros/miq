@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   Table,
   TableHeader,
@@ -35,16 +35,20 @@ import SeeDetails from '../SeeDetails';
 import EditUser from '@/app/components/settings/EditUser';
 import DeleteUser from '@/app/components/settings/DeleteUser';
 import { getAllUsers } from '@/services/userService';
+import { AdminContext } from '@/app/[lang]/(dashboard)/common/context/AdminContext';
+import { useContext } from 'react';
+import AddUser from './AddUserModal';
+import { useAuth } from '@/app/hooks/useAuth';
 
-interface clientInfoProps {
-  _id: string;
-  fullname: string;
+interface ClientInfoProps {
+  createdAt: string;
   email: string;
+  fullname: string;
   password: string;
   role: number;
-  createdAt: string;
   updatedAt: string;
   __v: number;
+  _id: string;
 }
 
 const statusColorMap: Record<string, ChipProps['color']> = {
@@ -63,7 +67,18 @@ const INITIAL_VISIBLE_COLUMNS = [
 
 type User = (typeof users)[0];
 
+async function fetchUsersDelete(token: string) {
+  try {
+    const usersData = await getAllUsers(token);
+    // setGetUsers(usersData.users);
+    return usersData.users;
+  } catch (error) {
+    console.error('Error fetching users:', error);
+  }
+}
 export default function ClientTable() {
+  const { user } = useAuth();
+
   const [filterValue, setFilterValue] = React.useState('');
   const [selectedKeys, setSelectedKeys] = React.useState<Selection>(
     new Set([])
@@ -77,30 +92,71 @@ export default function ClientTable() {
     column: 'age',
     direction: 'ascending',
   });
-  const [getUsers, setGetUsers] = useState<clientInfoProps[] | any>([]);
-  const [selectedCell, setSelectedCell] = useState<any>();
+  const [getUsers, setGetUsers] = useState<ClientInfoProps[] | any>([]);
+  const [getUsers2, setGetUsers2] = useState<any[]>([]);
+  const [selectedCell, setSelectedCell] = useState<ClientInfoProps | any>();
   // modal states
   const [openModal, setOpenModal] = useState<boolean>(false);
   // date states
   const [date, setDate] = useState<Date>(new Date());
 
+  // set Add users modal
+  const [addUser, setAddUser] = useState<boolean>(false);
+
+  const [refresh, setRefresh] = useState<boolean>(false);
+
+  const { dispatch } = useContext(AdminContext);
+
+  const setClientInfo = (info: ClientInfoProps | null) => {
+    dispatch({ type: 'SET_CLIENT_INFO', payload: info });
+  };
+
+  const refreshHandler = () => {
+    setRefresh(true);
+  };
+
+  const addUserHandler = (item: ClientInfoProps) => {
+    const addUser = [...getUsers, item];
+
+    setGetUsers(addUser);
+  };
+
+  console.log(getUsers, 'getusers');
+
   // get All Clients
   useEffect(() => {
-    async function fetchUsers() {
+    async function fetchUsers(token: string) {
       try {
-        const usersData = await getAllUsers();
+        const usersData = await getAllUsers(token);
         setGetUsers(usersData.users);
+        // return usersData.users;
       } catch (error) {
         console.error('Error fetching users:', error);
       }
     }
 
-    fetchUsers();
+    fetchUsers(user?.token!);
+    // setRefresh(false);
+
+    // setClientInfo(selectedCell);
   }, []);
+  // refresh, getUsers;
+
+  useEffect(() => {}, [getUsers, getUsers2]);
+
+  const deleteUserHandler = async (userId: string) => {
+    // let addUser = filteredItems.filter(
+    //   (item: ClientInfoProps) => item._id !== userId
+    // );
+
+    const addUser = await fetchUsersDelete(user?.token!);
+    setGetUsers(addUser);
+    setGetUsers2(addUser);
+  };
 
   // date variable
   const dateFormat = 'DD-MM-YYYY';
-  console.log(getUsers?.users, 'this is my get users');
+  // console.log(getUsers?.users, 'this is my get users');
 
   function disabledDate(current: any) {
     // Disable dates after today
@@ -128,7 +184,7 @@ export default function ClientTable() {
 
     if (hasSearchFilter) {
       filteredUsers = filteredUsers.filter(
-        (user: clientInfoProps) =>
+        (user: ClientInfoProps) =>
           user &&
           user.fullname?.toLowerCase().includes(filterValue.toLowerCase())
       );
@@ -151,7 +207,6 @@ export default function ClientTable() {
   const items = React.useMemo(() => {
     const start = (page - 1) * rowsPerPage;
     const end = start + rowsPerPage;
-
     return filteredItems.slice(start, end);
   }, [page, filteredItems, rowsPerPage]);
 
@@ -165,19 +220,59 @@ export default function ClientTable() {
     });
   }, [sortDescriptor, items]);
 
-  console.log(items, 'this is my sortedItems');
-
   function selectedCellInfo(id: number) {
     const currentCellInfo = sortedItems.find(
       (item) => item._id === id.toString()
     );
-    console.log(currentCellInfo, '00000000');
-    setSelectedCell(currentCellInfo);
-    setOpenModal(true);
+    // setSelectedCell(currentCellInfo);
+    setClientInfo(currentCellInfo);
   }
 
-  console.log(selectedCell, 'this is my selected cell info');
+  const replaceRoleNames = (users: any) => {
+    return users.map((user: any) => {
+      switch (user.role) {
+        case 1:
+          return { ...user, role: 'Admin' };
+        case 2:
+          return { ...user, role: 'Viewer' };
+        case 3:
+          return { ...user, role: 'Cleaner' };
+        case 4:
+          return { ...user, role: 'Risk-manager' };
+        default:
+          return user;
+      }
+    });
+  };
 
+  const updatedUsers = replaceRoleNames(sortedItems);
+
+  const updateUserHandler = async () => {
+    const usersData = await getAllUsers(user?.token!);
+    setGetUsers(usersData.users);
+
+    // console.log(filteredItems, 'getusers');
+    // console.log(user, 'users');
+    // console.log(users, 'getusersprops');
+    // let addUser = filteredItems.filter(
+    //   (item: ClientInfoProps) => item._id !== user._id
+    // );
+    // addUser = [...addUser, user];
+    // // addUser.push(item);
+    // let filteredUsers: ClientInfoProps[] = addUser.sort(
+    //   (
+    //     a: { createdAt: string | number | Date },
+    //     b: { createdAt: string | number | Date }
+    //   ) => {
+    //     const dateA = new Date(a.createdAt);
+    //     const dateB = new Date(b.createdAt);
+    //     return dateA.getTime() - dateB.getTime();
+    //   }
+    // );
+    // console.log(filteredUsers, 'filtereduser');
+    // console.log(addUser, 'filtereduser');
+    // setGetUsers(filteredUsers);
+  };
   const renderCell = React.useCallback((user: User, columnKey: React.Key) => {
     const cellValue = user[columnKey as keyof User];
 
@@ -199,9 +294,9 @@ export default function ClientTable() {
         return (
           <div className="flex flex-col">
             <p className="text-bold text-small capitalize">{cellValue}</p>
-            <p className="text-bold text-tiny capitalize text-default-500">
+            {/* <p className="text-bold text-tiny capitalize text-default-500">
               {user.role}
-            </p>
+            </p> */}
           </div>
         );
       case 'status':
@@ -220,8 +315,15 @@ export default function ClientTable() {
           <div className="">
             <div className="flex gap-x-2">
               <SeeDetails />
-              <EditUser />
-              <DeleteUser />
+              <EditUser
+                refresh={refreshHandler}
+                editUser={updateUserHandler}
+                users={getUsers}
+              />
+              <DeleteUser
+                refresh={refreshHandler}
+                deleteUserHandler={deleteUserHandler}
+              />
             </div>
           </div>
         );
@@ -326,7 +428,11 @@ export default function ClientTable() {
                   ))}
                 </DropdownMenu>
               </Dropdown>
-              <Button color="primary" endContent={<PlusIcon />}>
+              <Button
+                color="primary"
+                endContent={<PlusIcon />}
+                onClick={() => setAddUser(true)}
+              >
                 Add New
               </Button>
             </div>
@@ -408,6 +514,7 @@ export default function ClientTable() {
         isOpen={openModal}
         classStyle="text-black"
         showFooter={false}
+        positon="center"
       >
         <div className="space-y-4">
           <div className="w-[70%] m-auto">
@@ -419,7 +526,7 @@ export default function ClientTable() {
             />
           </div>
           <div className="text-center">
-            <h1>{selectedCell?.name}</h1>
+            <h1>{selectedCell?.fullname}</h1>
             <h1>{selectedCell?.email}</h1>
           </div>
           <div className="flex gap-x-2 justify-center">
@@ -428,6 +535,14 @@ export default function ClientTable() {
           </div>
         </div>
       </CustomModal>
+      <AddUser
+        onClose={() => {
+          setAddUser(false);
+        }}
+        isOpen={addUser}
+        refresh={refreshHandler}
+        addUser={addUserHandler}
+      />
       <Table
         aria-label="Example table with custom cells, pagination and sorting"
         isHeaderSticky
@@ -454,12 +569,19 @@ export default function ClientTable() {
             </TableColumn>
           )}
         </TableHeader>
-        <TableBody emptyContent={'No users found'} items={sortedItems}>
-          {(item) => (
+        <TableBody
+          // emptyContent={sortedItems.length === 0 ? 'loading...' : ''}
+          items={updatedUsers}
+        >
+          {(item: any) => (
             <TableRow
               key={item._id}
               className=""
-              // onClick={() => (setOpenModal(true), selectedCellInfo(item._id))}
+              onClick={() => {
+                {
+                  selectedCellInfo(item._id);
+                }
+              }}
             >
               {(columnKey) => (
                 <TableCell>{renderCell(item, columnKey)}</TableCell>

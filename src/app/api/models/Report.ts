@@ -28,6 +28,9 @@ interface reportType {
   age?: string;
   sexualOrientation?: string[];
   sexualOrientationFreeField?: string;
+  status?: string
+  category?: any[]
+  updatereport?: any
   
 }
 
@@ -59,9 +62,14 @@ const ReportSchema = new Schema<reportType>({
   age: { type: String, required: false },
   sexualOrientation: { type: Array<string>, required: false },
   sexualOrientationFreeField: { type: String, required: false },
-  
+  status: { type: String, required: false, default: 'pending' },
+  category: { type: Array<object>, required: false },
+  updatereport: [{ type: Schema.Types.ObjectId, ref: 'UpdateReport'}]
+  // category: [
+  //   { type: Object, required: false }
+  // ],
 });
-
+ReportSchema.set('timestamps', true);
 export const Report =
   mongoose.models.Report || mongoose.model<reportType>('Report', ReportSchema);
 // export const User = mongoose.models.User || mongoose.model('User', user)

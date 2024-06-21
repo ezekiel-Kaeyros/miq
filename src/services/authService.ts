@@ -5,6 +5,7 @@ export default class AuthService extends DataService {
     password: string;
     email: string;
   }): Promise<{
+    headers: any;
     data: {
       status: string;
       message: string;
@@ -25,31 +26,40 @@ export default class AuthService extends DataService {
   };
 
   register = (
-    data: { fullname: string; password: string; email: string; role: string },
+    data: { fullname: string; password: string; email: string; role: number },
     config?: any
-  ): Promise<{ data: { message: string }; status: number }> => {
+  ): Promise<{ data: { message: string; result: any }; status: number }> => {
     return this.post('/api/user/', data);
   };
 
-  //   changePassword = (data: any) => {
-  //     return this.post('/auth/changePassword', data)
-  //   }
+  getUsers = (): Promise<{ data: any; status: number }> => {
+    return this.get('/api/user/');
+  };
 
-  //   sendResetPasswordEmail = (data: any) => {
-  //     return this.post('/auth/sendResetPasswordEmail', data)
-  //   }
+  refreshToken = (): Promise<{
+    headers: any;
+    data: {
+      status: string;
+      message: string;
+      user: {
+        _id: string;
+        fullname: string;
+        email: string;
+        password: string;
+        role: number;
+        createdAt: string;
+        updatedAt: string;
+        __v: number;
+      }[];
+    };
+    status: number;
+  }> => {
+    return this.get('/api/auth/refresh');
+  };
 
   forgottenPassword = (data: any) => {
     return this.post('/auth/forgottenPassword', data);
   };
 
   updateUser = {};
-
-  //   getProfile = (data: any) => {
-  //     return this.get(`/auth/user/${data}`);
-  //   };
-
-  //   getUser = (data: any) => {
-  //     return this.get(`/user/${data}`);
-  //   };
 }

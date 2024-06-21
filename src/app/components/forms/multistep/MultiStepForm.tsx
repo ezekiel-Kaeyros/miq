@@ -83,14 +83,12 @@ const MultiStepForm: React.FC<MultiStepFormProps> = ({
                     fifthStepTranslation={formTranslation?.stepper?.fifthStep}
                   />
                 ) : step === 6 ? (
-                  <SixthStep
-                    sixthStepTranslation={formTranslation?.stepper?.sixthStep}
+                  <SeventhStep
+                    seventhStepTranslation={formTranslation?.stepper?.sixthStep}
                   />
                 ) : step === 7 ? (
-                  <SeventhStep
-                    seventhStepTranslation={
-                      formTranslation?.stepper?.seventhStep
-                    }
+                  <SixthStep
+                    sixthStepTranslation={formTranslation?.stepper?.seventhStep}
                   />
                 ) : step === 8 ? (
                   <EightStep
@@ -154,11 +152,9 @@ const MultiStepForm: React.FC<MultiStepFormProps> = ({
                     fifthStepTranslation={formTranslation?.stepper?.fifthStep}
                   />
                 ) : step === 8 ? (
-                  <SeventhStep
+                  <SixthStep
                     id="seventhForm"
-                    seventhStepTranslation={
-                      formTranslation?.stepper?.seventhStep
-                    }
+                    sixthStepTranslation={formTranslation?.stepper?.seventhStep}
                   />
                 ) : step === 9 ? (
                   <EightStep
@@ -194,8 +190,12 @@ const MultiStepForm: React.FC<MultiStepFormProps> = ({
             stepFromCookies !== 10 &&
             stepFromCookies !== 11 &&
             stepFromCookies !== 12 &&
-                reportingPerson !== 'myself' && reportingPerson!=="andere" && reportingPerson!=="onBehalf"  && reportingPerson!=="organization" ? (
-            <></>
+            reportingPerson !== 'myself' &&
+            reportingPerson !== 'andere' &&
+            reportingPerson !== 'onBehalf' &&
+            reportingPerson !== 'organization' ? (
+              <></>
+            ) : (
               // <Button
               //   form={`${
               //     stepFromCookies === 2
@@ -221,10 +221,9 @@ const MultiStepForm: React.FC<MultiStepFormProps> = ({
               // >
               //   {formTranslation?.button.save}
               // </Button>
-            ) : (
               <>
                 {step !== 1 ? (
-                  <div className="flex  space-x-0 md:space-x-16 justify-between md:flex-row  md:justify-between items-center w-full">
+                  <div className="flex  space-x-0 md:space-x-16 justify-between md:flex-row  md:justify-between items-center w-full md:mt-14 mt-8">
                     {step !== 11 && step !== 12 && (
                       <>
                         {reportingPerson === 'organization' && step === 11 ? (
@@ -251,7 +250,7 @@ const MultiStepForm: React.FC<MultiStepFormProps> = ({
                         </Button>
                         <Button
                           form={`${'tenthForm'}`}
-                          className="w-full lg:mr-auto lg:w-72 rounded-full py-4 font-bold"
+                          className="w-fit  rounded-full py-4 font-bold"
                           disabled={formErrors && true}
                           variant={`${formErrors ? 'disabled' : 'primary'}`}
                         >
@@ -271,7 +270,7 @@ const MultiStepForm: React.FC<MultiStepFormProps> = ({
                             </Button>
                             <Button
                               form={`${'tenthForm'}`}
-                              className="w-full lg:mr-auto lg:w-72 rounded-full py-4 font-bold"
+                              className="w-fit rounded-full py-4 font-bold"
                               disabled={formErrors && true}
                               variant={`${formErrors ? 'disabled' : 'primary'}`}
                             >
@@ -343,7 +342,7 @@ const MultiStepForm: React.FC<MultiStepFormProps> = ({
                                           ? 'eighthForm'
                                           : 'ninethForm'
                         }`}
-                        className="w-32 font-bold ml-auto"
+                        className="w-32 font-bold ml-auto md:mt-14 mt-8"
                         disabled={formErrors && true}
                         variant={`${formErrors ? 'disabled' : 'primary'}`}
                       >
